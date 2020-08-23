@@ -1,16 +1,44 @@
+import java.util.Scanner;
+
 public class Duke {
     public static void main(String[] args) {
-        printHorizontalLine();
-        System.out.println(" Hello! I'm Duke");
-        System.out.println(" What can I do for you?");
-        printHorizontalLine();
-        System.out.println(" Bye. Hope to see you again soon!");
-        printHorizontalLine();
+        Scanner in = new Scanner(System.in);
+        greet();
+        while (executeCommand(in.nextLine()));
     }
 
     public static void printHorizontalLine() {
-        System.out.println("______________________________" +
+        System.out.println("\t______________________________" +
                 "______________________________");
+    }
+
+    public static void printMessage(String message) {
+        printHorizontalLine();
+        System.out.println(message);
+        printHorizontalLine();
+    }
+
+    public static void greet() {
+        printMessage("\t Hello! I'm Duke\n\t What can I do for you?");
+    }
+
+    public static void bye() {
+        printMessage("\t Bye. Hope to see you again soon!");
+    }
+
+    public static void echo(String str) {
+        printMessage("\t " + str);
+    }
+
+    public static boolean executeCommand(String command) {
+        boolean loop = true;
+        if (command.equals("bye")) {
+            bye();
+            loop = false;
+        } else {
+            echo(command);
+        }
+        return loop;
     }
 
 }
