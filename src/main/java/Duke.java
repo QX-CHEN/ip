@@ -2,7 +2,7 @@ import java.util.Scanner;
 
 public class Duke {
     // Assume no more than 100 tasks
-    private static String[] tasks = new String[100];
+    private static Task[] tasks = new Task[100];
     private static int taskCount = 0;
 
     public static void main(String[] args) {
@@ -24,8 +24,12 @@ public class Duke {
 
     public static void list() {
         printHorizontalLine();
+        System.out.println("\t Here are the tasks in your list:");
         for (int i = 0; i < taskCount; i++) {
-            System.out.println("\t " + (i + 1) + ". " + tasks[i]);
+            System.out.print("\t " + (i + 1) + ". ");
+            // print tick or cross
+            System.out.print(tasks[i].isDone() ? "[\u2714] " : "[\u2716] ");
+            System.out.println(tasks[i].getDescription());
         }
         printHorizontalLine();
     }
@@ -44,17 +48,29 @@ public class Duke {
     }
 
     public static void addTask(String task) {
-        tasks[taskCount++] = task;
+        tasks[taskCount++] = new Task(task);
         printMessage("\t added: " + task);
+    }
+
+    public static void markAsDone(int taskNum) {
+        // Did not check whether the task is done
+        tasks[taskNum - 1].setDone(true);
+        printHorizontalLine();
+        System.out.println("\t Nice! I've marked this task as done:");
+        System.out.println("\t   [\u2714] " + tasks[taskNum - 1].getDescription());
+        printHorizontalLine();
     }
 
     public static boolean executeCommand(String command) {
         boolean loop = true;
+        String[] commandWords = command.split(" ");
         if (command.equals("bye")) {
             bye();
             loop = false;
         } else if (command.equals("list")) {
             list();
+        } else if (commandWords[0].equals("done")) {
+            markAsDone(Integer.parseInt(commandWords[1]));
         } else {
 //            echo(command);
             addTask(command);
