@@ -53,7 +53,7 @@ public class Duke {
     }
 
     public static void markAsDone(int taskNum) {
-        // Did not check whether the task is done
+        // Did not check whether the task is done or exists
         tasks[taskNum - 1].setDone(true);
         printHorizontalLine();
         System.out.println("\t Nice! I've marked this task as done:");
