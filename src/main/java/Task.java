@@ -23,4 +23,22 @@ public class Task {
         isDone = done;
     }
 
+    public String getStatusIcon() {
+        return isDone() ? "[\u2714]" : "[\u2716]";
+    }
+
+    public String getCode() {
+        return "";
+    }
+
+    public String getDate() {
+        return "";
+    }
+
+    @Override
+    public String toString() {
+        return getCode() + getStatusIcon() + " " +
+                getDescription() + " " + getDate();
+    }
+
 }

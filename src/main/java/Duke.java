@@ -27,9 +27,12 @@ public class Duke {
         System.out.println("\t Here are the tasks in your list:");
         for (int i = 0; i < taskCount; i++) {
             System.out.print("\t " + (i + 1) + ". ");
-            // print tick or cross
-            System.out.print(tasks[i].isDone() ? "[\u2714] " : "[\u2716] ");
-            System.out.println(tasks[i].getDescription());
+//            // print task code
+//            System.out.print(tasks[i].getCode());
+//            // print tick or cross
+//            System.out.print(tasks[i].getStatusIcon() + " ");
+//            System.out.println(tasks[i].getDescription());
+            System.out.println(tasks[i]);
         }
         printHorizontalLine();
     }
@@ -43,13 +46,24 @@ public class Duke {
         printMessage("\t Bye. Hope to see you again soon!");
     }
 
-    public static void echo(String str) {
-        printMessage("\t " + str);
-    }
-
     public static void addTask(String task) {
-        tasks[taskCount++] = new Task(task);
-        printMessage("\t added: " + task);
+        if (task.startsWith("todo")) {
+            tasks[taskCount] = new Todo(task.replace("todo", "").trim());
+        } else if  (task.startsWith("deadline")) {
+            String[] deadlineInfo = task.replace("deadline", "").split("/by");
+            tasks[taskCount] = new Deadline(deadlineInfo[0].trim(), deadlineInfo[1].trim());
+        } else if (task.startsWith("event")) {
+            String[] eventInfo = task.replace("event", "").split("/at");
+            tasks[taskCount] = new Event(eventInfo[0].trim(), eventInfo[1].trim());
+        } else {
+            System.out.println("No such task");
+        }
+        printHorizontalLine();
+        System.out.println("\t Got it. I've added: this task:");
+        System.out.println("\t   " + tasks[taskCount]);
+        taskCount++;
+        System.out.println("\t Now you have " + taskCount + " tasks in the list.");
+        printHorizontalLine();
     }
 
     public static void markAsDone(int taskNum) {
@@ -57,7 +71,7 @@ public class Duke {
         tasks[taskNum - 1].setDone(true);
         printHorizontalLine();
         System.out.println("\t Nice! I've marked this task as done:");
-        System.out.println("\t   [\u2714] " + tasks[taskNum - 1].getDescription());
+        System.out.println("\t   " + tasks[taskNum - 1]);
         printHorizontalLine();
     }
 
@@ -72,7 +86,6 @@ public class Duke {
         } else if (commandWords[0].equals("done")) {
             markAsDone(Integer.parseInt(commandWords[1]));
         } else {
-//            echo(command);
             addTask(command);
         }
         return loop;
