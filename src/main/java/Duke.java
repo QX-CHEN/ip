@@ -52,7 +52,8 @@ public class Duke {
             String[] eventInfo = task.replace("event", "").split("/at");
             tasks[taskCount] = new Event(eventInfo[0].trim(), eventInfo[1].trim());
         } else {
-            System.out.println("No such task");
+            System.out.println("No such task.");
+            return;
         }
 
         printHorizontalLine();
