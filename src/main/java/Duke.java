@@ -2,7 +2,8 @@ import java.util.Scanner;
 
 public class Duke {
     // Assume no more than 100 tasks
-    private static Task[] tasks = new Task[100];
+    private static final int MAX_TASKS = 100;
+    private static final Task[] tasks = new Task[MAX_TASKS];
     private static int taskCount = 0;
 
     public static void main(String[] args) {
@@ -27,11 +28,6 @@ public class Duke {
         System.out.println("\t Here are the tasks in your list:");
         for (int i = 0; i < taskCount; i++) {
             System.out.print("\t " + (i + 1) + ". ");
-//            // print task code
-//            System.out.print(tasks[i].getCode());
-//            // print tick or cross
-//            System.out.print(tasks[i].getStatusIcon() + " ");
-//            System.out.println(tasks[i].getDescription());
             System.out.println(tasks[i]);
         }
         printHorizontalLine();
@@ -58,6 +54,7 @@ public class Duke {
         } else {
             System.out.println("No such task");
         }
+
         printHorizontalLine();
         System.out.println("\t Got it. I've added: this task:");
         System.out.println("\t   " + tasks[taskCount]);
