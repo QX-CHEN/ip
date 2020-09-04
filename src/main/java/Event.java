@@ -21,7 +21,7 @@ public class Event extends Task {
     }
 
     @Override
-    public String getDate() {
+    public String getDatetime() {
         return "(at: " + getAt() + ")";
     }
 }

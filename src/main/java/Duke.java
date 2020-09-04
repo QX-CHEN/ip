@@ -42,30 +42,33 @@ public class Duke {
         printMessage("\t Bye. Hope to see you again soon!");
     }
 
-    public static void addTask(String task) {
-        if (task.startsWith("todo")) {
-            tasks[taskCount] = new Todo(task.replace("todo", "").trim());
-        } else if  (task.startsWith("deadline")) {
-            String[] deadlineInfo = task.replace("deadline", "").split("/by");
+    public static void addTask(String trimmedCommand) {
+        if (trimmedCommand.startsWith("todo")) {
+            tasks[taskCount] = new Todo(trimmedCommand.replace("todo", "").trim());
+        } else if  (trimmedCommand.startsWith("deadline")) {
+            String[] deadlineInfo = trimmedCommand.replace("deadline", "").split("/by");
             tasks[taskCount] = new Deadline(deadlineInfo[0].trim(), deadlineInfo[1].trim());
-        } else if (task.startsWith("event")) {
-            String[] eventInfo = task.replace("event", "").split("/at");
+        } else if (trimmedCommand.startsWith("event")) {
+            String[] eventInfo = trimmedCommand.replace("event", "").split("/at");
             tasks[taskCount] = new Event(eventInfo[0].trim(), eventInfo[1].trim());
         } else {
-            System.out.println("No such task.");
+            System.out.println("No such command.");
             return;
         }
 
         printHorizontalLine();
         System.out.println("\t Got it. I've added: this task:");
-        System.out.println("\t   " + tasks[taskCount]);
-        taskCount++;
+        System.out.println("\t   " + tasks[taskCount++]);
         System.out.println("\t Now you have " + taskCount + " tasks in the list.");
         printHorizontalLine();
     }
 
     public static void markAsDone(int taskNum) {
         // Did not check whether the task is done or exists
+        if (taskNum <= 0 || taskNum > taskCount) {
+            System.out.println("Invalid task number!");
+            return;
+        }
         tasks[taskNum - 1].setDone(true);
         printHorizontalLine();
         System.out.println("\t Nice! I've marked this task as done:");
@@ -73,20 +76,27 @@ public class Duke {
         printHorizontalLine();
     }
 
-    public static boolean executeCommand(String command) {
+    public static boolean executeCommand(String rawCommand) {
         boolean loop = true;
-        String[] commandWords = command.split(" ");
-        if (command.equals("bye")) {
-            bye();
-            loop = false;
-        } else if (command.equals("list")) {
-            list();
-        } else if (commandWords[0].equals("done")) {
-            markAsDone(Integer.parseInt(commandWords[1]));
-        } else {
-            addTask(command);
+        // remove leading and trailing space
+        String trimmedCommand = rawCommand.trim();
+        try {
+            if (trimmedCommand.startsWith("bye")) {
+                bye();
+                loop = false;
+            } else if (trimmedCommand.startsWith("list")) {
+                list();
+            } else if (trimmedCommand.startsWith("done")) {
+                markAsDone(Integer.parseInt(trimmedCommand.split(" ")[1]));
+            } else {
+                addTask(trimmedCommand);
+            }
+        } catch (NumberFormatException e) {
+            System.out.println("Task number should be numeric and within Integer range!");
+        } catch (ArrayIndexOutOfBoundsException e) {
+            System.out.println("Check command match given format. " +
+                    "Possible Errors: event /by, deadline /at, done, event, deadline");
         }
         return loop;
     }
-
 }

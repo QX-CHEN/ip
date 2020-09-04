@@ -31,14 +31,14 @@ public class Task {
         return "";
     }
 
-    public String getDate() {
+    public String getDatetime() {
         return "";
     }
 
     @Override
     public String toString() {
         return getCode() + getStatusIcon() + " " +
-                getDescription() + " " + getDate();
+                getDescription() + " " + getDatetime();
     }
 
 }
