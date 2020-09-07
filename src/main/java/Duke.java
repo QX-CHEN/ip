@@ -86,10 +86,10 @@ public class Duke {
 
     public static void markAsDone(int taskNum) {
         if (taskNum <= 0 || taskNum > taskCount) {
-            System.out.println("Invalid task number!");
+            System.out.println("\tInvalid task number!");
             return;
         } else if (tasks[taskNum - 1].isDone()) {
-            System.out.println("task.Task already done!");
+            System.out.println("\tTask already done!");
             return;
         }
         tasks[taskNum - 1].setDone(true);
@@ -115,9 +115,9 @@ public class Duke {
                 addTask(trimmedCommand);
             }
         }  catch (NumberFormatException e) {
-            System.out.println("task.Task number should be numeric and within Integer range!");
+            System.out.println("\tTask number should be numeric and within Integer range!");
         } catch (ArrayIndexOutOfBoundsException e) {
-            System.out.println("Please provide task number for done command!");
+            System.out.println("\tPlease provide task number for done command!");
         } catch (UnknownCommandException | InvalidCommandException e) {
             // Possible Errors: event with /by, deadline with /at, todo, event, deadline
             System.out.println(e);
