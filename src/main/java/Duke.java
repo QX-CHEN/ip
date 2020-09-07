@@ -1,3 +1,10 @@
+import exceptions.InvalidCommandException;
+import exceptions.UnknownCommandException;
+import task.Deadline;
+import task.Event;
+import task.Task;
+import task.Todo;
+
 import java.util.Scanner;
 
 public class Duke {
@@ -78,9 +85,11 @@ public class Duke {
     }
 
     public static void markAsDone(int taskNum) {
-        // Did not check whether the task is done
         if (taskNum <= 0 || taskNum > taskCount) {
             System.out.println("Invalid task number!");
+            return;
+        } else if (tasks[taskNum - 1].isDone()) {
+            System.out.println("task.Task already done!");
             return;
         }
         tasks[taskNum - 1].setDone(true);
@@ -106,7 +115,7 @@ public class Duke {
                 addTask(trimmedCommand);
             }
         }  catch (NumberFormatException e) {
-            System.out.println("Task number should be numeric and within Integer range!");
+            System.out.println("task.Task number should be numeric and within Integer range!");
         } catch (ArrayIndexOutOfBoundsException e) {
             System.out.println("Please provide task number for done command!");
         } catch (UnknownCommandException | InvalidCommandException e) {

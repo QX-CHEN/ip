@@ -1,3 +1,5 @@
+package task;
+
 public class Event extends Task {
     private static final String CODE = "[E]";
     private String at;
