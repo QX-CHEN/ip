@@ -42,18 +42,28 @@ public class Duke {
         printMessage("\t Bye. Hope to see you again soon!");
     }
 
-    public static void addTask(String trimmedCommand) {
+    public static void addTask(String trimmedCommand) throws UnknownCommandException, InvalidCommandException {
+        // Did not handle empty description
         if (trimmedCommand.startsWith("todo")) {
-            tasks[taskCount] = new Todo(trimmedCommand.replace("todo", "").trim());
+            String todoInfo = trimmedCommand.replace("todo", "").trim();
+            if (isEmptyDescription(todoInfo)) {
+                throw new InvalidCommandException();
+            }
+            tasks[taskCount] = new Todo(todoInfo);
         } else if  (trimmedCommand.startsWith("deadline")) {
             String[] deadlineInfo = trimmedCommand.replace("deadline", "").split("/by");
+            if (isEmptyDescription(deadlineInfo[0].trim()) || deadlineInfo.length != 2) {
+                throw new InvalidCommandException();
+            }
             tasks[taskCount] = new Deadline(deadlineInfo[0].trim(), deadlineInfo[1].trim());
         } else if (trimmedCommand.startsWith("event")) {
             String[] eventInfo = trimmedCommand.replace("event", "").split("/at");
+            if (isEmptyDescription(eventInfo[0].trim()) || eventInfo.length != 2) {
+                throw new InvalidCommandException();
+            }
             tasks[taskCount] = new Event(eventInfo[0].trim(), eventInfo[1].trim());
         } else {
-            System.out.println("No such command.");
-            return;
+            throw new UnknownCommandException();
         }
 
         printHorizontalLine();
@@ -63,8 +73,12 @@ public class Duke {
         printHorizontalLine();
     }
 
+    public static boolean isEmptyDescription(String description) {
+        return ("".equals(description));
+    }
+
     public static void markAsDone(int taskNum) {
-        // Did not check whether the task is done or exists
+        // Did not check whether the task is done
         if (taskNum <= 0 || taskNum > taskCount) {
             System.out.println("Invalid task number!");
             return;
@@ -91,11 +105,13 @@ public class Duke {
             } else {
                 addTask(trimmedCommand);
             }
-        } catch (NumberFormatException e) {
+        }  catch (NumberFormatException e) {
             System.out.println("Task number should be numeric and within Integer range!");
         } catch (ArrayIndexOutOfBoundsException e) {
-            System.out.println("Check command match given format. " +
-                    "Possible Errors: event /by, deadline /at, done, event, deadline");
+            System.out.println("Please provide task number for done command!");
+        } catch (UnknownCommandException | InvalidCommandException e) {
+            // Possible Errors: event with /by, deadline with /at, todo, event, deadline
+            System.out.println(e);
         }
         return loop;
     }
