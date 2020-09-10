@@ -4,4 +4,31 @@ event project meeting /at Monday 2-4pm
 list
 done 2
 list
+
+add
+dsajkld
+todo
+todo abc
+list
+event
+event    /at 3pm
+event games /by 5pm
+event meeting /at TUE 4pm
+lsit
+list
+dealine foo /by 8pm
+deadline
+deadline      /by 9pm
+deadline abba /at 6pm
+deadline Report /by 10pm
+list
+done
+done two
+done 7423897482937489230461947238647218364781964423179347
+done 2
+done 100
+done 0
+done -1
+done 5
+list
 bye
