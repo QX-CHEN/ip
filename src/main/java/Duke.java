@@ -50,7 +50,6 @@ public class Duke {
     }
 
     public static void addTask(String trimmedCommand) throws UnknownCommandException, InvalidCommandException {
-        // Did not handle empty description
         if (trimmedCommand.startsWith("todo")) {
             String todoInfo = trimmedCommand.replace("todo", "").trim();
             if (isEmptyDescription(todoInfo)) {
@@ -62,13 +61,17 @@ public class Duke {
             if (isEmptyDescription(deadlineInfo[0].trim()) || deadlineInfo.length != 2) {
                 throw new InvalidCommandException();
             }
-            tasks[taskCount] = new Deadline(deadlineInfo[0].trim(), deadlineInfo[1].trim());
+            String description = deadlineInfo[0].trim();
+            String datetime = deadlineInfo[1].trim();
+            tasks[taskCount] = new Deadline(description, datetime);
         } else if (trimmedCommand.startsWith("event")) {
             String[] eventInfo = trimmedCommand.replace("event", "").split("/at");
             if (isEmptyDescription(eventInfo[0].trim()) || eventInfo.length != 2) {
                 throw new InvalidCommandException();
             }
-            tasks[taskCount] = new Event(eventInfo[0].trim(), eventInfo[1].trim());
+            String description = eventInfo[0].trim();
+            String datetime = eventInfo[1].trim();
+            tasks[taskCount] = new Event(description, datetime);
         } else {
             throw new UnknownCommandException();
         }
@@ -110,7 +113,8 @@ public class Duke {
             } else if (trimmedCommand.startsWith("list")) {
                 list();
             } else if (trimmedCommand.startsWith("done")) {
-                markAsDone(Integer.parseInt(trimmedCommand.split(" ")[1]));
+                int taskNum = Integer.parseInt(trimmedCommand.split(" ")[1]);
+                markAsDone(taskNum);
             } else {
                 addTask(trimmedCommand);
             }
@@ -119,7 +123,6 @@ public class Duke {
         } catch (ArrayIndexOutOfBoundsException e) {
             System.out.println("\tPlease provide task number for done command!");
         } catch (UnknownCommandException | InvalidCommandException e) {
-            // Possible Errors: event with /by, deadline with /at, todo, event, deadline
             System.out.println(e);
         }
         return loop;
