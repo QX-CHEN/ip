@@ -104,6 +104,29 @@
 	 5. [E][✔] meeting (at: TUE 4pm)
 	 6. [D][✖] Report (by: 10pm)
 	____________________________________________________________
+	Please provide task number for done command!
+	Task number should be numeric and within Integer range!
+	Task number should be numeric and within Integer range!
+	Invalid task number!
+	Invalid task number!
+	____________________________________________________________
+	 Noted. I've removed this task:
+	   [T][✖] abc 
+	 Now you have 5 tasks in the list.
+	____________________________________________________________
+	____________________________________________________________
+	 Here are the tasks in your list:
+	 1. [T][✖] borrow book 
+	 2. [D][✔] return book (by: Sunday)
+	 3. [E][✖] project meeting (at: Monday 2-4pm)
+	 4. [E][✔] meeting (at: TUE 4pm)
+	 5. [D][✖] Report (by: 10pm)
+	____________________________________________________________
+	____________________________________________________________
+	 Noted. I've removed this task:
+	   [D][✔] return book (by: Sunday)
+	 Now you have 4 tasks in the list.
+	____________________________________________________________
 	____________________________________________________________
 	 Bye. Hope to see you again soon!
 	____________________________________________________________

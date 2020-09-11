@@ -31,4 +31,12 @@ done 0
 done -1
 done 5
 list
+delete
+delete two
+delete 87329163232132173862178648932314723891647326472
+delete 0
+delete -1
+delete 4
+list
+delete 2
 bye
