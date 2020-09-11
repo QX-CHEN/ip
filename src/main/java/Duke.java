@@ -6,12 +6,12 @@ import task.Task;
 import task.Todo;
 
 import java.util.Scanner;
+import java.util.ArrayList;
 
 public class Duke {
     // Assume no more than 100 tasks
     private static final int MAX_TASKS = 100;
-    private static final Task[] tasks = new Task[MAX_TASKS];
-    private static int taskCount = 0;
+    private static final ArrayList<Task> tasks = new ArrayList<>(MAX_TASKS);
 
     public static void main(String[] args) {
         Scanner in = new Scanner(System.in);
@@ -33,9 +33,9 @@ public class Duke {
     public static void list() {
         printHorizontalLine();
         System.out.println("\t Here are the tasks in your list:");
-        for (int i = 0; i < taskCount; i++) {
+        for (int i = 0; i < tasks.size(); i++) {
             System.out.print("\t " + (i + 1) + ". ");
-            System.out.println(tasks[i]);
+            System.out.println(tasks.get(i));
         }
         printHorizontalLine();
     }
@@ -55,7 +55,7 @@ public class Duke {
             if (isEmptyDescription(todoInfo)) {
                 throw new InvalidCommandException();
             }
-            tasks[taskCount] = new Todo(todoInfo);
+            tasks.add(new Todo(todoInfo));
         } else if  (trimmedCommand.startsWith("deadline")) {
             String[] deadlineInfo = trimmedCommand.replace("deadline", "").split("/by");
             if (isEmptyDescription(deadlineInfo[0].trim()) || deadlineInfo.length != 2) {
@@ -63,7 +63,7 @@ public class Duke {
             }
             String description = deadlineInfo[0].trim();
             String datetime = deadlineInfo[1].trim();
-            tasks[taskCount] = new Deadline(description, datetime);
+            tasks.add(new Deadline(description, datetime));
         } else if (trimmedCommand.startsWith("event")) {
             String[] eventInfo = trimmedCommand.replace("event", "").split("/at");
             if (isEmptyDescription(eventInfo[0].trim()) || eventInfo.length != 2) {
@@ -71,15 +71,15 @@ public class Duke {
             }
             String description = eventInfo[0].trim();
             String datetime = eventInfo[1].trim();
-            tasks[taskCount] = new Event(description, datetime);
+            tasks.add(new Event(description, datetime));
         } else {
             throw new UnknownCommandException();
         }
 
         printHorizontalLine();
         System.out.println("\t Got it. I've added: this task:");
-        System.out.println("\t   " + tasks[taskCount++]);
-        System.out.println("\t Now you have " + taskCount + " tasks in the list.");
+        System.out.println("\t   " + tasks.get(tasks.size() - 1));
+        System.out.println("\t Now you have " + tasks.size() + " tasks in the list.");
         printHorizontalLine();
     }
 
@@ -88,17 +88,17 @@ public class Duke {
     }
 
     public static void markAsDone(int taskNum) {
-        if (taskNum <= 0 || taskNum > taskCount) {
+        if (taskNum <= 0 || taskNum > tasks.size()) {
             System.out.println("\tInvalid task number!");
             return;
-        } else if (tasks[taskNum - 1].isDone()) {
+        } else if (tasks.get(taskNum - 1).isDone()) {
             System.out.println("\tTask already done!");
             return;
         }
-        tasks[taskNum - 1].setDone(true);
+        tasks.get(taskNum - 1).setDone(true);
         printHorizontalLine();
         System.out.println("\t Nice! I've marked this task as done:");
-        System.out.println("\t   " + tasks[taskNum - 1]);
+        System.out.println("\t   " + tasks.get(taskNum - 1));
         printHorizontalLine();
     }
 
