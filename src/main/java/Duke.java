@@ -83,6 +83,19 @@ public class Duke {
         printHorizontalLine();
     }
 
+    public static void deleteTask(int taskNum) {
+        if (taskNum <= 0 || taskNum > tasks.size()) {
+            System.out.println("\tInvalid task number!");
+            return;
+        }
+
+        printHorizontalLine();
+        System.out.println("\t Noted. I've removed this task:");
+        System.out.println("\t   " + tasks.remove(taskNum - 1));
+        System.out.println("\t Now you have " + tasks.size() + " tasks in the list.");
+        printHorizontalLine();
+    }
+
     public static boolean isEmptyDescription(String description) {
         return ("".equals(description));
     }
@@ -115,6 +128,9 @@ public class Duke {
             } else if (trimmedCommand.startsWith("done")) {
                 int taskNum = Integer.parseInt(trimmedCommand.split(" ")[1]);
                 markAsDone(taskNum);
+            } else if (trimmedCommand.startsWith("delete")) {
+                int taskNum = Integer.parseInt(trimmedCommand.split(" ")[1]);
+                deleteTask(taskNum);
             } else {
                 addTask(trimmedCommand);
             }
