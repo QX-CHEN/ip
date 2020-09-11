@@ -1,7 +1,7 @@
 package task;
 
 public class Deadline extends Task {
-    private static final String CODE = "[D]";
+    private static final String CODE = "D";
     private String by;
 
     public Deadline(String description, String by) {
@@ -24,6 +24,12 @@ public class Deadline extends Task {
 
     @Override
     public String getDatetime() {
-        return "(by: " + getBy() + ")";
+        return getBy();
+    }
+
+    @Override
+    public String toString() {
+        return "[" + getCode() + "]" + getStatusIcon() + " " +
+                getDescription() + " (by: " + getDatetime() + ")";
     }
 }

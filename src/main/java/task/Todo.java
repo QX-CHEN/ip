@@ -1,7 +1,7 @@
 package task;
 
 public class Todo extends Task {
-    private static final String CODE = "[T]";
+    private static final String CODE = "T";
 
     public Todo(String description) {
         super(description);
@@ -10,5 +10,11 @@ public class Todo extends Task {
     @Override
     public String getCode() {
         return CODE;
+    }
+
+    @Override
+    public String toString() {
+        return "[" + getCode() + "]" + getStatusIcon() + " " +
+                getDescription();
     }
 }

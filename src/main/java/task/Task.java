@@ -39,8 +39,7 @@ public class Task {
 
     @Override
     public String toString() {
-        return getCode() + getStatusIcon() + " " +
-                getDescription() + " " + getDatetime();
+        return "";
     }
 
 }

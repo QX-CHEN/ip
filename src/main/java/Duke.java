@@ -5,13 +5,18 @@ import task.Event;
 import task.Task;
 import task.Todo;
 
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.Scanner;
+
+
 
 public class Duke {
     // Assume no more than 100 tasks
     private static final int MAX_TASKS = 100;
     private static final Task[] tasks = new Task[MAX_TASKS];
     private static int taskCount = 0;
+    private static final String FILE_PATH = "data/Duke.txt";
 
     public static void main(String[] args) {
         Scanner in = new Scanner(System.in);
@@ -102,6 +107,24 @@ public class Duke {
         printHorizontalLine();
     }
 
+    public static void updateFile() {
+        try {
+            writeTasksToFile();
+        } catch (IOException e) {
+            // relative path is different for testing
+            System.out.println("Check file path!");
+        }
+    }
+
+    public static void writeTasksToFile() throws IOException {
+        FileWriter fw = new FileWriter(FILE_PATH);
+        for (int i = 0; i < taskCount; i++) {
+            fw.write(tasks[i].getCode() + "|" + (tasks[i].isDone() ? "1" : "0") + "|" +
+                    tasks[i].getDescription() + "|" + tasks[i].getDatetime() + System.lineSeparator());
+        }
+        fw.close();
+    }
+
     public static boolean executeCommand(String rawCommand) {
         boolean loop = true;
         // remove leading and trailing space
@@ -115,8 +138,10 @@ public class Duke {
             } else if (trimmedCommand.startsWith("done")) {
                 int taskNum = Integer.parseInt(trimmedCommand.split(" ")[1]);
                 markAsDone(taskNum);
+                updateFile();
             } else {
                 addTask(trimmedCommand);
+                updateFile();
             }
         }  catch (NumberFormatException e) {
             System.out.println("\tTask number should be numeric and within Integer range!");
