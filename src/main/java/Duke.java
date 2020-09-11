@@ -89,6 +89,7 @@ public class Duke {
         System.out.println("\t   " + tasks[taskCount++]);
         System.out.println("\t Now you have " + taskCount + " tasks in the list.");
         printHorizontalLine();
+        updateFile();
     }
 
     public static boolean isEmptyDescription(String description) {
@@ -108,6 +109,7 @@ public class Duke {
         System.out.println("\t Nice! I've marked this task as done:");
         System.out.println("\t   " + tasks[taskNum - 1]);
         printHorizontalLine();
+        updateFile();
     }
 
     public static void updateFile() {
@@ -120,12 +122,12 @@ public class Duke {
     }
 
     public static void writeTasksToFile() throws IOException {
-        FileWriter fw = new FileWriter(FILE_PATH);
+        FileWriter file = new FileWriter(FILE_PATH);
         for (int i = 0; i < taskCount; i++) {
-            fw.write(tasks[i].getCode() + "|" + (tasks[i].isDone() ? "1" : "0") + "|" +
+            file.write(tasks[i].getCode() + "|" + (tasks[i].isDone() ? "1" : "0") + "|" +
                     tasks[i].getDescription() + "|" + tasks[i].getDatetime() + System.lineSeparator());
         }
-        fw.close();
+        file.close();
     }
 
     public static void loadTasks() {
@@ -133,7 +135,7 @@ public class Duke {
             readTasksFromFile();
         } catch (FileNotFoundException e) {
             // relative path is different for testing
-            System.out.println("Check file path!");
+            System.out.println("File not found!");
         }
     }
 
@@ -146,9 +148,7 @@ public class Duke {
     }
 
     public static void processLine(String line) {
-//        System.out.println(line);
         String[] parts = line.split("\\|");
-//        System.out.println(parts[0] + parts[1]);
         boolean done = (!"0".equals(parts[1]));
         switch (parts[0]) {
         case "T":
@@ -178,10 +178,8 @@ public class Duke {
             } else if (trimmedCommand.startsWith("done")) {
                 int taskNum = Integer.parseInt(trimmedCommand.split(" ")[1]);
                 markAsDone(taskNum);
-                updateFile();
             } else {
                 addTask(trimmedCommand);
-                updateFile();
             }
         }  catch (NumberFormatException e) {
             System.out.println("\tTask number should be numeric and within Integer range!");
