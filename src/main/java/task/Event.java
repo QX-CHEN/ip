@@ -9,6 +9,11 @@ public class Event extends Task {
         setAt(at);
     }
 
+    public Event(boolean done, String description, String at) {
+        super(done, description);
+        setAt(at);
+    }
+
     public String getAt() {
         return at;
     }

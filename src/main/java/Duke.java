@@ -5,6 +5,8 @@ import task.Event;
 import task.Task;
 import task.Todo;
 
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Scanner;
@@ -19,6 +21,7 @@ public class Duke {
     private static final String FILE_PATH = "data/Duke.txt";
 
     public static void main(String[] args) {
+        loadTasks();
         Scanner in = new Scanner(System.in);
         greet();
         while (executeCommand(in.nextLine()));
@@ -123,6 +126,43 @@ public class Duke {
                     tasks[i].getDescription() + "|" + tasks[i].getDatetime() + System.lineSeparator());
         }
         fw.close();
+    }
+
+    public static void loadTasks() {
+        try {
+            readTasksFromFile();
+        } catch (FileNotFoundException e) {
+            // relative path is different for testing
+            System.out.println("Check file path!");
+        }
+    }
+
+    public static void readTasksFromFile() throws FileNotFoundException {
+        File file = new File(FILE_PATH);
+        Scanner scanner = new Scanner(file);
+        while (scanner.hasNext()) {
+            processLine(scanner.nextLine());
+        }
+    }
+
+    public static void processLine(String line) {
+//        System.out.println(line);
+        String[] parts = line.split("\\|");
+//        System.out.println(parts[0] + parts[1]);
+        boolean done = (!"0".equals(parts[1]));
+        switch (parts[0]) {
+        case "T":
+            tasks[taskCount++] = new Todo(done, parts[2]);
+            break;
+        case "E":
+            tasks[taskCount++] = new Event(done, parts[2], parts[3]);
+            break;
+        case "D":
+            tasks[taskCount++] = new Deadline(done, parts[2], parts[3]);
+            break;
+        default:
+            break;
+        }
     }
 
     public static boolean executeCommand(String rawCommand) {

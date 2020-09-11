@@ -9,6 +9,11 @@ public class Deadline extends Task {
         setBy(by);
     }
 
+    public Deadline(boolean done, String description, String by) {
+        super(done, description);
+        setBy(by);
+    }
+
     public String getBy() {
         return by;
     }

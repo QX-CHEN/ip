@@ -9,6 +9,11 @@ public class Task {
         setDone(false);
     }
 
+    public Task(boolean done, String description) {
+        setDescription(description);
+        setDone(done);
+    }
+
     public String getDescription() {
         return description;
     }
