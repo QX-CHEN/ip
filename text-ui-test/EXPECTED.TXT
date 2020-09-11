@@ -4,7 +4,7 @@
 	____________________________________________________________
 	____________________________________________________________
 	 Got it. I've added: this task:
-	   [T][✖] borrow book 
+	   [T][✖] borrow book
 	 Now you have 1 tasks in the list.
 	____________________________________________________________
 	____________________________________________________________
@@ -19,7 +19,7 @@
 	____________________________________________________________
 	____________________________________________________________
 	 Here are the tasks in your list:
-	 1. [T][✖] borrow book 
+	 1. [T][✖] borrow book
 	 2. [D][✖] return book (by: Sunday)
 	 3. [E][✖] project meeting (at: Monday 2-4pm)
 	____________________________________________________________
@@ -29,7 +29,7 @@
 	____________________________________________________________
 	____________________________________________________________
 	 Here are the tasks in your list:
-	 1. [T][✖] borrow book 
+	 1. [T][✖] borrow book
 	 2. [D][✔] return book (by: Sunday)
 	 3. [E][✖] project meeting (at: Monday 2-4pm)
 	____________________________________________________________
@@ -39,15 +39,15 @@
 	Check command format!
 	____________________________________________________________
 	 Got it. I've added: this task:
-	   [T][✖] abc 
+	   [T][✖] abc
 	 Now you have 4 tasks in the list.
 	____________________________________________________________
 	____________________________________________________________
 	 Here are the tasks in your list:
-	 1. [T][✖] borrow book 
+	 1. [T][✖] borrow book
 	 2. [D][✔] return book (by: Sunday)
 	 3. [E][✖] project meeting (at: Monday 2-4pm)
-	 4. [T][✖] abc 
+	 4. [T][✖] abc
 	____________________________________________________________
 	Check command format!
 	Check command format!
@@ -60,10 +60,10 @@
 	Check command word!
 	____________________________________________________________
 	 Here are the tasks in your list:
-	 1. [T][✖] borrow book 
+	 1. [T][✖] borrow book
 	 2. [D][✔] return book (by: Sunday)
 	 3. [E][✖] project meeting (at: Monday 2-4pm)
-	 4. [T][✖] abc 
+	 4. [T][✖] abc
 	 5. [E][✖] meeting (at: TUE 4pm)
 	____________________________________________________________
 	Check command word!
@@ -77,10 +77,10 @@
 	____________________________________________________________
 	____________________________________________________________
 	 Here are the tasks in your list:
-	 1. [T][✖] borrow book 
+	 1. [T][✖] borrow book
 	 2. [D][✔] return book (by: Sunday)
 	 3. [E][✖] project meeting (at: Monday 2-4pm)
-	 4. [T][✖] abc 
+	 4. [T][✖] abc
 	 5. [E][✖] meeting (at: TUE 4pm)
 	 6. [D][✖] Report (by: 10pm)
 	____________________________________________________________
@@ -97,10 +97,10 @@
 	____________________________________________________________
 	____________________________________________________________
 	 Here are the tasks in your list:
-	 1. [T][✖] borrow book 
+	 1. [T][✖] borrow book
 	 2. [D][✔] return book (by: Sunday)
 	 3. [E][✖] project meeting (at: Monday 2-4pm)
-	 4. [T][✖] abc 
+	 4. [T][✖] abc
 	 5. [E][✔] meeting (at: TUE 4pm)
 	 6. [D][✖] Report (by: 10pm)
 	____________________________________________________________

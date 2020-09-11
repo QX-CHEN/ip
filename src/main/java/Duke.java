@@ -5,15 +5,24 @@ import task.Event;
 import task.Task;
 import task.Todo;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.Scanner;
 import java.util.ArrayList;
+
+
 
 public class Duke {
     // Assume no more than 100 tasks
     private static final int MAX_TASKS = 100;
     private static final ArrayList<Task> tasks = new ArrayList<>(MAX_TASKS);
+    private static final String FILE_PATH = "data/Duke.txt";
+
 
     public static void main(String[] args) {
+        loadTasks();
         Scanner in = new Scanner(System.in);
         greet();
         while (executeCommand(in.nextLine()));
@@ -94,6 +103,7 @@ public class Duke {
         System.out.println("\t   " + tasks.remove(taskNum - 1));
         System.out.println("\t Now you have " + tasks.size() + " tasks in the list.");
         printHorizontalLine();
+        updateFile();
     }
 
     public static boolean isEmptyDescription(String description) {
@@ -113,6 +123,60 @@ public class Duke {
         System.out.println("\t Nice! I've marked this task as done:");
         System.out.println("\t   " + tasks.get(taskNum - 1));
         printHorizontalLine();
+        updateFile();
+    }
+
+    public static void updateFile() {
+        try {
+            writeTasksToFile();
+        } catch (IOException e) {
+            // relative path is different for testing
+            System.out.println("Check file path!");
+        }
+    }
+
+    public static void writeTasksToFile() throws IOException {
+        FileWriter file = new FileWriter(FILE_PATH);
+        for (Task t : tasks) {
+            file.write(t.getCode() + "|" + (t.isDone() ? "1" : "0") + "|" +
+                    t.getDescription() + "|" + t.getDatetime() + System.lineSeparator());
+        }
+        file.close();
+    }
+
+    public static void loadTasks() {
+        try {
+            readTasksFromFile();
+        } catch (FileNotFoundException e) {
+            // relative path is different for testing
+            System.out.println("File not found!");
+        }
+    }
+
+    public static void readTasksFromFile() throws FileNotFoundException {
+        File file = new File(FILE_PATH);
+        Scanner scanner = new Scanner(file);
+        while (scanner.hasNext()) {
+            processLine(scanner.nextLine());
+        }
+    }
+
+    public static void processLine(String line) {
+        String[] parts = line.split("\\|");
+        boolean done = (!"0".equals(parts[1]));
+        switch (parts[0]) {
+        case "T":
+            tasks.add(new Todo(done, parts[2]));
+            break;
+        case "E":
+            tasks.add(new Event(done, parts[2], parts[3]));
+            break;
+        case "D":
+            tasks.add(new Deadline(done, parts[2], parts[3]));
+            break;
+        default:
+            break;
+        }
     }
 
     public static boolean executeCommand(String rawCommand) {

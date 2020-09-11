@@ -1,11 +1,16 @@
 package task;
 
 public class Deadline extends Task {
-    private static final String CODE = "[D]";
+    private static final String CODE = "D";
     private String by;
 
     public Deadline(String description, String by) {
         super(description);
+        setBy(by);
+    }
+
+    public Deadline(boolean done, String description, String by) {
+        super(done, description);
         setBy(by);
     }
 
@@ -24,6 +29,12 @@ public class Deadline extends Task {
 
     @Override
     public String getDatetime() {
-        return "(by: " + getBy() + ")";
+        return getBy();
+    }
+
+    @Override
+    public String toString() {
+        return "[" + getCode() + "]" + getStatusIcon() + " " +
+                getDescription() + " (by: " + getDatetime() + ")";
     }
 }

@@ -1,11 +1,16 @@
 package task;
 
 public class Event extends Task {
-    private static final String CODE = "[E]";
+    private static final String CODE = "E";
     private String at;
 
     public Event(String description, String at) {
         super(description);
+        setAt(at);
+    }
+
+    public Event(boolean done, String description, String at) {
+        super(done, description);
         setAt(at);
     }
 
@@ -24,6 +29,12 @@ public class Event extends Task {
 
     @Override
     public String getDatetime() {
-        return "(at: " + getAt() + ")";
+        return getAt();
+    }
+
+    @Override
+    public String toString() {
+        return "[" + getCode() + "]" + getStatusIcon() + " " +
+                getDescription() + " (at: " + getDatetime() + ")";
     }
 }

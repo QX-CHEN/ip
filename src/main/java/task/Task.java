@@ -9,6 +9,11 @@ public class Task {
         setDone(false);
     }
 
+    public Task(boolean done, String description) {
+        setDescription(description);
+        setDone(done);
+    }
+
     public String getDescription() {
         return description;
     }
@@ -39,8 +44,7 @@ public class Task {
 
     @Override
     public String toString() {
-        return getCode() + getStatusIcon() + " " +
-                getDescription() + " " + getDatetime();
+        return "";
     }
 
 }
