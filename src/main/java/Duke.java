@@ -9,8 +9,8 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.Scanner;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 
 
@@ -18,7 +18,8 @@ public class Duke {
     // Assume no more than 100 tasks
     private static final int MAX_TASKS = 100;
     private static final ArrayList<Task> tasks = new ArrayList<>(MAX_TASKS);
-    private static final String FILE_PATH = "data/Duke.txt";
+    private static final String DIRECTORY_NAME = "data";
+    private static final String FILE_NAME = "Duke.txt";
 
 
     public static void main(String[] args) {
@@ -90,6 +91,7 @@ public class Duke {
         System.out.println("\t   " + tasks.get(tasks.size() - 1));
         System.out.println("\t Now you have " + tasks.size() + " tasks in the list.");
         printHorizontalLine();
+        updateFile();
     }
 
     public static void deleteTask(int taskNum) {
@@ -136,7 +138,7 @@ public class Duke {
     }
 
     public static void writeTasksToFile() throws IOException {
-        FileWriter file = new FileWriter(FILE_PATH);
+        FileWriter file = new FileWriter(DIRECTORY_NAME + "/" + FILE_NAME);
         for (Task t : tasks) {
             file.write(t.getCode() + "|" + (t.isDone() ? "1" : "0") + "|" +
                     t.getDescription() + "|" + t.getDatetime() + System.lineSeparator());
@@ -145,16 +147,30 @@ public class Duke {
     }
 
     public static void loadTasks() {
+        File directory = new File(DIRECTORY_NAME);
+        boolean directoryCreated = false;
         try {
-            readTasksFromFile();
-        } catch (FileNotFoundException e) {
-            // relative path is different for testing
-            System.out.println("File not found!");
+            if (!directory.exists()) {
+                directoryCreated = directory.mkdir();
+            }
+        } catch (Exception e) {
+            e.getStackTrace();
+        }
+        // created = True -> first time running -> no need to load
+        // created = False -> directory exists OR fail to create (exists)
+        if (!directoryCreated) {
+            // handle directory exists case
+            try {
+                readTasksFromFile();
+            } catch (FileNotFoundException e) {
+                // relative path is different for testing
+                System.out.println("File not found!");
+            }
         }
     }
 
     public static void readTasksFromFile() throws FileNotFoundException {
-        File file = new File(FILE_PATH);
+        File file = new File(DIRECTORY_NAME + "/" + FILE_NAME);
         Scanner scanner = new Scanner(file);
         while (scanner.hasNext()) {
             processLine(scanner.nextLine());

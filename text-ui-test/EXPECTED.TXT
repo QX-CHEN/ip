@@ -111,12 +111,12 @@
 	Invalid task number!
 	____________________________________________________________
 	 Noted. I've removed this task:
-	   [T][✖] abc 
+	   [T][✖] abc
 	 Now you have 5 tasks in the list.
 	____________________________________________________________
 	____________________________________________________________
 	 Here are the tasks in your list:
-	 1. [T][✖] borrow book 
+	 1. [T][✖] borrow book
 	 2. [D][✔] return book (by: Sunday)
 	 3. [E][✖] project meeting (at: Monday 2-4pm)
 	 4. [E][✔] meeting (at: TUE 4pm)
