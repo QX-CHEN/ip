@@ -4,34 +4,34 @@
 	____________________________________________________________
 	____________________________________________________________
 	 Got it. I've added: this task:
-	   [T][✖] borrow book
+	   [T][X] borrow book
 	 Now you have 1 tasks in the list.
 	____________________________________________________________
 	____________________________________________________________
 	 Got it. I've added: this task:
-	   [D][✖] return book (by: Sunday)
+	   [D][X] return book (by: Sunday)
 	 Now you have 2 tasks in the list.
 	____________________________________________________________
 	____________________________________________________________
 	 Got it. I've added: this task:
-	   [E][✖] project meeting (at: Monday 2-4pm)
+	   [E][X] project meeting (at: Monday 2-4pm)
 	 Now you have 3 tasks in the list.
 	____________________________________________________________
 	____________________________________________________________
 	 Here are the tasks in your list:
-	 1. [T][✖] borrow book
-	 2. [D][✖] return book (by: Sunday)
-	 3. [E][✖] project meeting (at: Monday 2-4pm)
+	 1. [T][X] borrow book
+	 2. [D][X] return book (by: Sunday)
+	 3. [E][X] project meeting (at: Monday 2-4pm)
 	____________________________________________________________
 	____________________________________________________________
 	 Nice! I've marked this task as done:
-	   [D][✔] return book (by: Sunday)
+	   [D][T] return book (by: Sunday)
 	____________________________________________________________
 	____________________________________________________________
 	 Here are the tasks in your list:
-	 1. [T][✖] borrow book
-	 2. [D][✔] return book (by: Sunday)
-	 3. [E][✖] project meeting (at: Monday 2-4pm)
+	 1. [T][X] borrow book
+	 2. [D][T] return book (by: Sunday)
+	 3. [E][X] project meeting (at: Monday 2-4pm)
 	____________________________________________________________
 	Check command word!
 	Check command word!
@@ -39,32 +39,32 @@
 	Check command format!
 	____________________________________________________________
 	 Got it. I've added: this task:
-	   [T][✖] abc
+	   [T][X] abc
 	 Now you have 4 tasks in the list.
 	____________________________________________________________
 	____________________________________________________________
 	 Here are the tasks in your list:
-	 1. [T][✖] borrow book
-	 2. [D][✔] return book (by: Sunday)
-	 3. [E][✖] project meeting (at: Monday 2-4pm)
-	 4. [T][✖] abc
+	 1. [T][X] borrow book
+	 2. [D][T] return book (by: Sunday)
+	 3. [E][X] project meeting (at: Monday 2-4pm)
+	 4. [T][X] abc
 	____________________________________________________________
 	Check command format!
 	Check command format!
 	Check command format!
 	____________________________________________________________
 	 Got it. I've added: this task:
-	   [E][✖] meeting (at: TUE 4pm)
+	   [E][X] meeting (at: TUE 4pm)
 	 Now you have 5 tasks in the list.
 	____________________________________________________________
 	Check command word!
 	____________________________________________________________
 	 Here are the tasks in your list:
-	 1. [T][✖] borrow book
-	 2. [D][✔] return book (by: Sunday)
-	 3. [E][✖] project meeting (at: Monday 2-4pm)
-	 4. [T][✖] abc
-	 5. [E][✖] meeting (at: TUE 4pm)
+	 1. [T][X] borrow book
+	 2. [D][T] return book (by: Sunday)
+	 3. [E][X] project meeting (at: Monday 2-4pm)
+	 4. [T][X] abc
+	 5. [E][X] meeting (at: TUE 4pm)
 	____________________________________________________________
 	Check command word!
 	Check command format!
@@ -72,17 +72,17 @@
 	Check command format!
 	____________________________________________________________
 	 Got it. I've added: this task:
-	   [D][✖] Report (by: 10pm)
+	   [D][X] Report (by: 10pm)
 	 Now you have 6 tasks in the list.
 	____________________________________________________________
 	____________________________________________________________
 	 Here are the tasks in your list:
-	 1. [T][✖] borrow book
-	 2. [D][✔] return book (by: Sunday)
-	 3. [E][✖] project meeting (at: Monday 2-4pm)
-	 4. [T][✖] abc
-	 5. [E][✖] meeting (at: TUE 4pm)
-	 6. [D][✖] Report (by: 10pm)
+	 1. [T][X] borrow book
+	 2. [D][T] return book (by: Sunday)
+	 3. [E][X] project meeting (at: Monday 2-4pm)
+	 4. [T][X] abc
+	 5. [E][X] meeting (at: TUE 4pm)
+	 6. [D][X] Report (by: 10pm)
 	____________________________________________________________
 	Please provide task number for done command!
 	Task number should be numeric and within Integer range!
@@ -93,16 +93,16 @@
 	Invalid task number!
 	____________________________________________________________
 	 Nice! I've marked this task as done:
-	   [E][✔] meeting (at: TUE 4pm)
+	   [E][T] meeting (at: TUE 4pm)
 	____________________________________________________________
 	____________________________________________________________
 	 Here are the tasks in your list:
-	 1. [T][✖] borrow book
-	 2. [D][✔] return book (by: Sunday)
-	 3. [E][✖] project meeting (at: Monday 2-4pm)
-	 4. [T][✖] abc
-	 5. [E][✔] meeting (at: TUE 4pm)
-	 6. [D][✖] Report (by: 10pm)
+	 1. [T][X] borrow book
+	 2. [D][T] return book (by: Sunday)
+	 3. [E][X] project meeting (at: Monday 2-4pm)
+	 4. [T][X] abc
+	 5. [E][T] meeting (at: TUE 4pm)
+	 6. [D][X] Report (by: 10pm)
 	____________________________________________________________
 	Please provide task number for done command!
 	Task number should be numeric and within Integer range!
@@ -111,20 +111,20 @@
 	Invalid task number!
 	____________________________________________________________
 	 Noted. I've removed this task:
-	   [T][✖] abc
+	   [T][X] abc
 	 Now you have 5 tasks in the list.
 	____________________________________________________________
 	____________________________________________________________
 	 Here are the tasks in your list:
-	 1. [T][✖] borrow book
-	 2. [D][✔] return book (by: Sunday)
-	 3. [E][✖] project meeting (at: Monday 2-4pm)
-	 4. [E][✔] meeting (at: TUE 4pm)
-	 5. [D][✖] Report (by: 10pm)
+	 1. [T][X] borrow book
+	 2. [D][T] return book (by: Sunday)
+	 3. [E][X] project meeting (at: Monday 2-4pm)
+	 4. [E][T] meeting (at: TUE 4pm)
+	 5. [D][X] Report (by: 10pm)
 	____________________________________________________________
 	____________________________________________________________
 	 Noted. I've removed this task:
-	   [D][✔] return book (by: Sunday)
+	   [D][T] return book (by: Sunday)
 	 Now you have 4 tasks in the list.
 	____________________________________________________________
 	____________________________________________________________

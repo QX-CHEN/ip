@@ -31,7 +31,7 @@ public class Task {
     }
 
     public String getStatusIcon() {
-        return isDone() ? "[\u2714]" : "[\u2716]";
+        return isDone() ? "[T]" : "[X]";
     }
 
     public String getCode() {
