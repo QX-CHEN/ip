@@ -1,4 +1,4 @@
-package task;
+package tasks;
 
 public class Todo extends Task {
     private static final String CODE = "T";

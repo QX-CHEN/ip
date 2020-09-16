@@ -1,9 +1,9 @@
 import exceptions.InvalidCommandException;
 import exceptions.UnknownCommandException;
-import task.Deadline;
-import task.Event;
-import task.Task;
-import task.Todo;
+import tasks.Deadline;
+import tasks.Event;
+import tasks.Task;
+import tasks.Todo;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -89,7 +89,7 @@ public class Duke {
         printHorizontalLine();
         System.out.println("\t Got it. I've added: this task:");
         System.out.println("\t   " + tasks.get(tasks.size() - 1));
-        System.out.println("\t Now you have " + tasks.size() + " tasks in the list.");
+        System.out.println("\t Now you have " + tasks.size() + " task(s) in the list.");
         printHorizontalLine();
         updateFile();
     }
@@ -103,7 +103,7 @@ public class Duke {
         printHorizontalLine();
         System.out.println("\t Noted. I've removed this task:");
         System.out.println("\t   " + tasks.remove(taskNum - 1));
-        System.out.println("\t Now you have " + tasks.size() + " tasks in the list.");
+        System.out.println("\t Now you have " + tasks.size() + " task(s) in the list.");
         printHorizontalLine();
         updateFile();
     }
