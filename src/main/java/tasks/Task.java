@@ -1,6 +1,6 @@
 package tasks;
 
-public class Task {
+public abstract class Task {
     private String description;
     private boolean isDone;
 
@@ -34,17 +34,11 @@ public class Task {
         return isDone() ? "[\u2714]" : "[\u2716]";
     }
 
-    public String getCode() {
-        return "";
-    }
+    public abstract String getCode();
 
-    public String getDatetime() {
-        return "";
-    }
+    public abstract String getDatetime();
 
     @Override
-    public String toString() {
-        return "";
-    }
+    public abstract String toString();
 
 }

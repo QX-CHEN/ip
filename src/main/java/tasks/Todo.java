@@ -17,6 +17,11 @@ public class Todo extends Task {
     }
 
     @Override
+    public String getDatetime() {
+        return "";
+    }
+
+    @Override
     public String toString() {
         return "[" + getCode() + "]" + getStatusIcon() + " " +
                 getDescription();
