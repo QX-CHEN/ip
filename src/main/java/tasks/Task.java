@@ -1,6 +1,8 @@
 package tasks;
 
 public abstract class Task {
+    private static final String TICK_ICON = "[\u2714]";
+    private static final String CROSS_ICON = "[\u2716]";
     private String description;
     private boolean isDone;
 
@@ -31,12 +33,14 @@ public abstract class Task {
     }
 
     public String getStatusIcon() {
-        return isDone() ? "[\u2714]" : "[\u2716]";
+        return isDone() ? TICK_ICON : CROSS_ICON;
     }
 
     public abstract String getCode();
 
-    public abstract String getDatetime();
+    public String getDatetime() {
+        return "";
+    }
 
     @Override
     public abstract String toString();

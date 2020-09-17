@@ -24,9 +24,9 @@ public class Duke {
 
     public static void main(String[] args) {
         loadTasks();
-        Scanner in = new Scanner(System.in);
         greet();
-        while (executeCommand(in.nextLine()));
+        Scanner scanner = new Scanner(System.in);
+        while (executeCommand(scanner.nextLine()));
     }
 
     public static void printHorizontalLine() {
@@ -132,7 +132,6 @@ public class Duke {
         try {
             writeTasksToFile();
         } catch (IOException e) {
-            // relative path is different for testing
             System.out.println("Check file path!");
         }
     }
@@ -147,6 +146,19 @@ public class Duke {
     }
 
     public static void loadTasks() {
+        // created = True -> first time running -> no need to load
+        // created = False -> directory exists OR fail to create (exists)
+        if (!createDirectory()) {
+            // handle directory exists case
+            try {
+                readTasksFromFile();
+            } catch (FileNotFoundException e) {
+                System.out.println("File not found!");
+            }
+        }
+    }
+
+    public static boolean createDirectory() {
         File directory = new File(DIRECTORY_NAME);
         boolean directoryCreated = false;
         try {
@@ -156,17 +168,7 @@ public class Duke {
         } catch (Exception e) {
             e.getStackTrace();
         }
-        // created = True -> first time running -> no need to load
-        // created = False -> directory exists OR fail to create (exists)
-        if (!directoryCreated) {
-            // handle directory exists case
-            try {
-                readTasksFromFile();
-            } catch (FileNotFoundException e) {
-                // relative path is different for testing
-                System.out.println("File not found!");
-            }
-        }
+        return directoryCreated;
     }
 
     public static void readTasksFromFile() throws FileNotFoundException {
@@ -182,13 +184,18 @@ public class Duke {
         boolean done = (!"0".equals(parts[1]));
         switch (parts[0]) {
         case "T":
-            tasks.add(new Todo(done, parts[2]));
+            String todoDescription = parts[2];
+            tasks.add(new Todo(done, todoDescription));
             break;
         case "E":
-            tasks.add(new Event(done, parts[2], parts[3]));
+            String eventDescription = parts[2];
+            String eventDatetime = parts[3];
+            tasks.add(new Event(done, eventDescription, eventDatetime));
             break;
         case "D":
-            tasks.add(new Deadline(done, parts[2], parts[3]));
+            String deadlineDescription = parts[2];
+            String deadlineDatetime = parts[3];
+            tasks.add(new Deadline(done, deadlineDescription, deadlineDatetime));
             break;
         default:
             break;
