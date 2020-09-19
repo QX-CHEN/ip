@@ -2,22 +2,18 @@ import exceptions.InvalidCommandException;
 import exceptions.UnknownCommandException;
 import tasks.Deadline;
 import tasks.Event;
-import tasks.Task;
 import tasks.Todo;
 
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Scanner;
 
 
 
 public class Duke {
-    // Assume no more than 100 tasks
-    private static final int MAX_TASKS = 100;
-    private static final ArrayList<Task> tasks = new ArrayList<>(MAX_TASKS);
+    private static final TaskList tasks = new TaskList();
     private static final String DIRECTORY_NAME = "data";
     private static final String FILE_NAME = "Duke.txt";
 
@@ -102,7 +98,7 @@ public class Duke {
 
         printHorizontalLine();
         System.out.println("\t Noted. I've removed this task:");
-        System.out.println("\t   " + tasks.remove(taskNum - 1));
+        System.out.println("\t   " + tasks.delete(taskNum - 1));
         System.out.println("\t Now you have " + tasks.size() + " task(s) in the list.");
         printHorizontalLine();
         updateFile();
@@ -138,9 +134,9 @@ public class Duke {
 
     public static void writeTasksToFile() throws IOException {
         FileWriter file = new FileWriter(DIRECTORY_NAME + "/" + FILE_NAME);
-        for (Task t : tasks) {
-            file.write(t.getCode() + "|" + (t.isDone() ? "1" : "0") + "|" +
-                    t.getDescription() + "|" + t.getDatetime() + System.lineSeparator());
+        for (int i = 0; i < tasks.size(); i++) {
+            file.write(tasks.get(i).getCode() + "|" + (tasks.get(i).isDone() ? "1" : "0") + "|" +
+                    tasks.get(i).getDescription() + "|" + tasks.get(i).getDatetime() + System.lineSeparator());
         }
         file.close();
     }
