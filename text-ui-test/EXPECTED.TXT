@@ -84,9 +84,9 @@
 	 5. [E][✖] meeting (at: TUE 4pm)
 	 6. [D][✖] Report (by: 10pm)
 	____________________________________________________________
-	Please provide task number for done command!
-	Task number should be numeric and within Integer range!
-	Task number should be numeric and within Integer range!
+	Invalid task number!
+	Invalid task number!
+	Invalid task number!
 	Task already done!
 	Invalid task number!
 	Invalid task number!
@@ -104,9 +104,9 @@
 	 5. [E][✔] meeting (at: TUE 4pm)
 	 6. [D][✖] Report (by: 10pm)
 	____________________________________________________________
-	Please provide task number for done command!
-	Task number should be numeric and within Integer range!
-	Task number should be numeric and within Integer range!
+	Invalid task number!
+	Invalid task number!
+	Invalid task number!
 	Invalid task number!
 	Invalid task number!
 	____________________________________________________________
