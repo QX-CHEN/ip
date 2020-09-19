@@ -23,5 +23,6 @@ public class DeleteCommand extends Command{
 
     public void execute(TaskList tasks) {
         tasks.deleteTask(taskNum);
+        updateFile(tasks);
     }
 }

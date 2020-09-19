@@ -25,6 +25,7 @@ public class AddTodo extends AddCommand {
     public void execute(TaskList tasks) {
         Todo todo = new Todo(description);
         tasks.add(todo);
+        updateFile(tasks);
         printAddMessage(tasks);
     }
 }

@@ -22,5 +22,6 @@ public class DoneCommand extends Command{
 
     public void execute(TaskList tasks) {
         tasks.markAsDone(taskNum);
+        updateFile(tasks);
     }
 }

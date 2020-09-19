@@ -27,6 +27,7 @@ public class AddEvent extends AddCommand {
     public void execute(TaskList tasks) {
         Event event = new Event(description, datetime);
         tasks.add(event);
+        updateFile(tasks);
         printAddMessage(tasks);
     }
 }

@@ -27,6 +27,7 @@ public class AddDeadline extends AddCommand{
     public void execute(TaskList tasks) {
         Deadline deadline = new Deadline(description, datetime);
         tasks.add(deadline);
+        updateFile(tasks);
         printAddMessage(tasks);
     }
 }
