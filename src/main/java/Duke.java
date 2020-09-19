@@ -16,7 +16,7 @@ public class Duke {
 
     public static void main(String[] args) {
         greet();
-        tasks = Storage.loadTasks();
+        Storage.loadTasks(tasks);
         Scanner scanner = new Scanner(System.in);
         while (executeCommand(scanner.nextLine()));
     }

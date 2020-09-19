@@ -32,19 +32,17 @@ public class Storage {
         file.close();
     }
 
-    public static TaskList loadTasks() {
+    public static void loadTasks(TaskList tasks) {
         // created = True -> first time running -> no need to load
         // created = False -> directory exists OR fail to create (exists)
-        TaskList tasks = new TaskList();
         if (!createDirectory()) {
             // handle directory exists case
             try {
-                tasks = readTasksFromFile();
+                readTasksFromFile(tasks);
             } catch (FileNotFoundException e) {
                 System.out.println("File not found!");
             }
         }
-        return tasks;
     }
 
     private static boolean createDirectory() {
@@ -60,14 +58,12 @@ public class Storage {
         return directoryCreated;
     }
 
-    private static TaskList readTasksFromFile() throws FileNotFoundException {
+    private static void readTasksFromFile(TaskList tasks) throws FileNotFoundException {
         File file = new File(DIRECTORY_NAME + "/" + FILE_NAME);
-        TaskList tasks = new TaskList();
         Scanner scanner = new Scanner(file);
         while (scanner.hasNext()) {
             processLine(tasks, scanner.nextLine());
         }
-        return tasks;
     }
 
     private static void processLine(TaskList tasks, String line) {
