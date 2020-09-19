@@ -1,26 +1,22 @@
+import data.TaskList;
 import exceptions.InvalidCommandException;
 import exceptions.UnknownCommandException;
+import storage.Storage;
 import tasks.Deadline;
 import tasks.Event;
 import tasks.Todo;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileWriter;
-import java.io.IOException;
 import java.util.Scanner;
 
 
 
 public class Duke {
-    private static final TaskList tasks = new TaskList();
-    private static final String DIRECTORY_NAME = "data";
-    private static final String FILE_NAME = "Duke.txt";
 
+    private static TaskList tasks = new TaskList();
 
     public static void main(String[] args) {
-        loadTasks();
         greet();
+        tasks = Storage.loadTasks();
         Scanner scanner = new Scanner(System.in);
         while (executeCommand(scanner.nextLine()));
     }
@@ -87,7 +83,7 @@ public class Duke {
         System.out.println("\t   " + tasks.get(tasks.size() - 1));
         System.out.println("\t Now you have " + tasks.size() + " task(s) in the list.");
         printHorizontalLine();
-        updateFile();
+        Storage.updateFile(tasks);
     }
 
     public static void deleteTask(int taskNum) {
@@ -101,7 +97,7 @@ public class Duke {
         System.out.println("\t   " + tasks.delete(taskNum - 1));
         System.out.println("\t Now you have " + tasks.size() + " task(s) in the list.");
         printHorizontalLine();
-        updateFile();
+        Storage.updateFile(tasks);
     }
 
     public static boolean isEmptyDescription(String description) {
@@ -121,81 +117,7 @@ public class Duke {
         System.out.println("\t Nice! I've marked this task as done:");
         System.out.println("\t   " + tasks.get(taskNum - 1));
         printHorizontalLine();
-        updateFile();
-    }
-
-    public static void updateFile() {
-        try {
-            writeTasksToFile();
-        } catch (IOException e) {
-            System.out.println("Check file path!");
-        }
-    }
-
-    public static void writeTasksToFile() throws IOException {
-        FileWriter file = new FileWriter(DIRECTORY_NAME + "/" + FILE_NAME);
-        for (int i = 0; i < tasks.size(); i++) {
-            file.write(tasks.get(i).getCode() + "|" + (tasks.get(i).isDone() ? "1" : "0") + "|" +
-                    tasks.get(i).getDescription() + "|" + tasks.get(i).getDatetime() + System.lineSeparator());
-        }
-        file.close();
-    }
-
-    public static void loadTasks() {
-        // created = True -> first time running -> no need to load
-        // created = False -> directory exists OR fail to create (exists)
-        if (!createDirectory()) {
-            // handle directory exists case
-            try {
-                readTasksFromFile();
-            } catch (FileNotFoundException e) {
-                System.out.println("File not found!");
-            }
-        }
-    }
-
-    public static boolean createDirectory() {
-        File directory = new File(DIRECTORY_NAME);
-        boolean directoryCreated = false;
-        try {
-            if (!directory.exists()) {
-                directoryCreated = directory.mkdir();
-            }
-        } catch (Exception e) {
-            e.getStackTrace();
-        }
-        return directoryCreated;
-    }
-
-    public static void readTasksFromFile() throws FileNotFoundException {
-        File file = new File(DIRECTORY_NAME + "/" + FILE_NAME);
-        Scanner scanner = new Scanner(file);
-        while (scanner.hasNext()) {
-            processLine(scanner.nextLine());
-        }
-    }
-
-    public static void processLine(String line) {
-        String[] parts = line.split("\\|");
-        boolean done = (!"0".equals(parts[1]));
-        switch (parts[0]) {
-        case "T":
-            String todoDescription = parts[2];
-            tasks.add(new Todo(done, todoDescription));
-            break;
-        case "E":
-            String eventDescription = parts[2];
-            String eventDatetime = parts[3];
-            tasks.add(new Event(done, eventDescription, eventDatetime));
-            break;
-        case "D":
-            String deadlineDescription = parts[2];
-            String deadlineDatetime = parts[3];
-            tasks.add(new Deadline(done, deadlineDescription, deadlineDatetime));
-            break;
-        default:
-            break;
-        }
+        Storage.updateFile(tasks);
     }
 
     public static boolean executeCommand(String rawCommand) {
