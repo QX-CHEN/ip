@@ -1,3 +1,4 @@
+import common.Messages;
 import data.TaskList;
 import exceptions.InvalidCommandException;
 import exceptions.UnknownCommandException;
@@ -12,30 +13,10 @@ public class Duke {
     private static TaskList tasks = new TaskList();
 
     public static void main(String[] args) {
-        greet();
+        Messages.greet();
         Storage.loadTasks(tasks);
         Scanner scanner = new Scanner(System.in);
         while (executeCommand(scanner.nextLine()));
-    }
-
-    public static void printHorizontalLine() {
-        System.out.println("\t______________________________" +
-                "______________________________");
-    }
-
-    public static void printMessage(String message) {
-        printHorizontalLine();
-        System.out.println(message);
-        printHorizontalLine();
-    }
-
-    public static void greet() {
-        printMessage("\t Hello! I'm Duke" + System.lineSeparator() +
-                "\t What can I do for you?");
-    }
-
-    public static void bye() {
-        printMessage("\t Bye. Hope to see you again soon!");
     }
 
     public static boolean executeCommand(String rawCommand) {
@@ -44,7 +25,7 @@ public class Duke {
         String trimmedCommand = rawCommand.trim();
         try {
             if (trimmedCommand.startsWith("bye")) {
-                bye();
+                Messages.bye();
                 loop = false;
             } else if (trimmedCommand.startsWith("list")) {
                 tasks.list();

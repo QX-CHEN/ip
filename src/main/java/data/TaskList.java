@@ -26,13 +26,13 @@ public class TaskList {
     }
 
     public void list() {
-        System.out.println(Messages.HORIZONTAL_LINE);
+        Messages.printHorizontalLine();
         System.out.println("\t Here are the tasks in your list:");
         for (int i = 0; i < tasks.size(); i++) {
             System.out.print("\t " + (i + 1) + ". ");
             System.out.println(tasks.get(i));
         }
-        System.out.println(Messages.HORIZONTAL_LINE);
+        Messages.printHorizontalLine();
     }
 
     public void addTask(String trimmedCommand) throws UnknownCommandException, InvalidCommandException {
@@ -62,11 +62,11 @@ public class TaskList {
             throw new UnknownCommandException();
         }
 
-        System.out.println(Messages.HORIZONTAL_LINE);
+        Messages.printHorizontalLine();
         System.out.println("\t Got it. I've added: this task:");
         System.out.println("\t   " + tasks.get(tasks.size() - 1));
         System.out.println("\t Now you have " + tasks.size() + " task(s) in the list.");
-        System.out.println(Messages.HORIZONTAL_LINE);
+        Messages.printHorizontalLine();
     }
 
     public void deleteTask(int taskNum) {
@@ -75,11 +75,11 @@ public class TaskList {
             return;
         }
 
-        System.out.println(Messages.HORIZONTAL_LINE);
+        Messages.printHorizontalLine();
         System.out.println("\t Noted. I've removed this task:");
         System.out.println("\t   " + tasks.remove(taskNum - 1));
         System.out.println("\t Now you have " + tasks.size() + " task(s) in the list.");
-        System.out.println(Messages.HORIZONTAL_LINE);
+        Messages.printHorizontalLine();
     }
 
     private boolean isEmptyDescription(String description) {
@@ -95,10 +95,10 @@ public class TaskList {
             return;
         }
         tasks.get(taskNum - 1).setDone(true);
-        System.out.println(Messages.HORIZONTAL_LINE);
+        Messages.printHorizontalLine();
         System.out.println("\t Nice! I've marked this task as done:");
         System.out.println("\t   " + tasks.get(taskNum - 1));
-        System.out.println(Messages.HORIZONTAL_LINE);
+        Messages.printHorizontalLine();
     }
 
 }
