@@ -1,7 +1,7 @@
 package data;
 
-import common.Messages;
 import tasks.Task;
+import ui.Ui;
 
 import java.util.ArrayList;
 
@@ -21,41 +21,41 @@ public class TaskList {
     }
 
     public void list() {
-        Messages.printHorizontalLine();
-        System.out.println("\t Here are the tasks in your list:");
+        Ui.printHorizontalLine();
+        Ui.printMessageWithNewLine("\t Here are the tasks in your list:");
         for (int i = 0; i < tasks.size(); i++) {
-            System.out.print("\t " + (i + 1) + ". ");
-            System.out.println(tasks.get(i));
+            Ui.printMessageWithoutNewLine("\t " + (i + 1) + ". ");
+            Ui.printTask(tasks.get(i));
         }
-        Messages.printHorizontalLine();
+        Ui.printHorizontalLine();
     }
 
     public void deleteTask(int taskNum) {
         if (taskNum <= 0 || taskNum > tasks.size()) {
-            System.out.println("\tInvalid task number!");
+            Ui.printMessageWithNewLine("\tInvalid task number!");
             return;
         }
 
-        Messages.printHorizontalLine();
-        System.out.println("\t Noted. I've removed this task:");
-        System.out.println("\t   " + tasks.remove(taskNum - 1));
-        System.out.println("\t Now you have " + tasks.size() + " task(s) in the list.");
-        Messages.printHorizontalLine();
+        Ui.printHorizontalLine();
+        Ui.printMessageWithNewLine("\t Noted. I've removed this task:");
+        Ui.printMessageWithNewLine("\t   " + tasks.remove(taskNum - 1));
+        Ui.printMessageWithNewLine("\t Now you have " + tasks.size() + " task(s) in the list.");
+        Ui.printHorizontalLine();
     }
 
     public void markAsDone(int taskNum) {
         if (taskNum <= 0 || taskNum > tasks.size()) {
-            System.out.println("\tInvalid task number!");
+            Ui.printMessageWithNewLine("\tInvalid task number!");
             return;
         } else if (tasks.get(taskNum - 1).isDone()) {
-            System.out.println("\tTask already done!");
+            Ui.printMessageWithNewLine("\tTask already done!");
             return;
         }
         tasks.get(taskNum - 1).setDone(true);
-        Messages.printHorizontalLine();
-        System.out.println("\t Nice! I've marked this task as done:");
-        System.out.println("\t   " + tasks.get(taskNum - 1));
-        Messages.printHorizontalLine();
+        Ui.printHorizontalLine();
+        Ui.printMessageWithNewLine("\t Nice! I've marked this task as done:");
+        Ui.printMessageWithNewLine("\t   " + tasks.get(taskNum - 1));
+        Ui.printHorizontalLine();
     }
 
 }

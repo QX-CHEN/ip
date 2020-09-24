@@ -4,6 +4,7 @@ import data.TaskList;
 import tasks.Deadline;
 import tasks.Event;
 import tasks.Todo;
+import ui.Ui;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -19,7 +20,7 @@ public class Storage {
         try {
             writeTasksToFile(tasks);
         } catch (IOException e) {
-            System.out.println("Check file path!");
+            Ui.printMessageWithNewLine("Check file path!");
         }
     }
 
@@ -33,14 +34,11 @@ public class Storage {
     }
 
     public static void loadTasks(TaskList tasks) {
-        // created = True -> first time running -> no need to load
-        // created = False -> directory exists OR fail to create (exists)
         if (!createDirectory()) {
-            // handle directory exists case
             try {
                 readTasksFromFile(tasks);
             } catch (FileNotFoundException e) {
-                System.out.println("File not found!");
+                Ui.printMessageWithNewLine("File not found!");
             }
         }
     }
