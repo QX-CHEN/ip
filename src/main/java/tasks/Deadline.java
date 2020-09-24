@@ -1,25 +1,82 @@
 package tasks;
 
+import ui.Ui;
+
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
+
 public class Deadline extends Task {
     private static final String CODE = "D";
-    private String by;
+    private LocalDate date;
+    private LocalTime time;
 
-    public Deadline(String description, String by) {
+    public Deadline(String description, String dateString, String timeString) {
         super(description);
-        setBy(by);
+        date = dateStringToDate(dateString);
+        time = timeStringToTime(timeString);
     }
 
-    public Deadline(boolean done, String description, String by) {
+    public Deadline(boolean done, String description, String dateString, String timeString) {
         super(done, description);
-        setBy(by);
+        date = dateStringToDate(dateString);
+        time = timeStringToTime(timeString);
     }
 
-    public String getBy() {
-        return by;
+    private LocalDate dateStringToDate(String dateString) {
+        if (dateString == null) {
+            return null;
+        }
+        if (dateString.contains("/")) {
+            return LocalDate.parse(dateString, DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+        } else if (dateString.contains("-")) {
+            return LocalDate.parse(dateString, DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+        } else {
+            Ui.printMessageWithNewLine("Unknown date format!");
+            return null;
+        }
     }
 
-    public void setBy(String by) {
-        this.by = by;
+    private LocalTime timeStringToTime(String timeString) {
+        if (timeString == null) {
+            return null;
+        }
+        int time = Integer.parseInt(timeString);
+        int hour = time / 100;
+        int minute = time % 100;
+        return LocalTime.of(hour, minute);
+    }
+
+    private String dateToString(LocalDate date) {
+        if (date == null) {
+            return "";
+        } else {
+            return date.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+        }
+    }
+
+    private String timeToString(LocalTime time) {
+        if (time == null) {
+            return "";
+        } else {
+            return time.format(DateTimeFormatter.ofPattern("HHmm"));
+        }
+    }
+
+    public LocalDate getDate() {
+        return date;
+    }
+
+    public void setDate(LocalDate date) {
+        this.date = date;
+    }
+
+    public LocalTime getTime() {
+        return time;
+    }
+
+    public void setTime(LocalTime time) {
+        this.time = time;
     }
 
     @Override
@@ -29,12 +86,12 @@ public class Deadline extends Task {
 
     @Override
     public String getDatetime() {
-        return getBy();
+        return dateToString(getDate()) + "|" + timeToString(getTime());
     }
 
     @Override
     public String toString() {
         return "[" + getCode() + "]" + getStatusIcon() + " " +
-                getDescription() + " (by: " + getDatetime() + ")";
+                getDescription() + " (by: " + dateToString(getDate()) + " " + timeToString(getTime()) + ")";
     }
 }

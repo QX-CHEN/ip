@@ -79,8 +79,9 @@ public class Storage {
             break;
         case "D":
             String deadlineDescription = parts[2];
-            String deadlineDatetime = parts[3];
-            tasks.add(new Deadline(done, deadlineDescription, deadlineDatetime));
+            String deadlineDate = parts[3];
+            String deadlineTime = parts[4];
+            tasks.add(new Deadline(done, deadlineDescription, deadlineDate, deadlineTime));
             break;
         default:
             break;
