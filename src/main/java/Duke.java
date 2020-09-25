@@ -9,17 +9,27 @@ import ui.Ui;
 
 import java.util.Scanner;
 
-
+/**
+ * Duke class starts, runs and stops the main program.
+ *
+ * @author Chen Qixing
+ * @version 0.1
+ * @since 16 AUG 2020
+ */
 public class Duke {
 
     private static final TaskList tasks = new TaskList();
 
+    /**
+     * Reads data from file and runs main program.
+     */
     public static void main(String[] args) {
         Storage.loadTasks(tasks);
-        run(tasks);
+        run();
     }
 
-    public static void run(TaskList tasks) {
+
+    private static void run() {
         Scanner scanner = new Scanner(System.in);
         Ui.greet();
         boolean running = true;
