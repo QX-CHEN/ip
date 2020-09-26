@@ -25,6 +25,7 @@ public class AddEvent extends AddCommand {
      * Creates a AddEvent Command with trimmed input.
      *
      * @param trimmedInput raw input without leading and trailing white space.
+     * @throws InvalidCommandException if the trimmed input format does not match with the pattern.
      */
     public AddEvent(String trimmedInput) throws InvalidCommandException {
         Matcher matcher = COMMAND_PATTERN.matcher(trimmedInput);

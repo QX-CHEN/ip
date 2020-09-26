@@ -14,6 +14,8 @@ public class Parser {
      *
      * @param rawInput message to be printed in between the lines.
      * @return a Command based on the raw input.
+     * @throws InvalidCommandException if the trimmed input format does not match with the command pattern.
+     * @throws UnknownCommandException if the raw input does not start with one the command words.
      */
     public static Command processInput(String rawInput) throws InvalidCommandException, UnknownCommandException {
         String trimmedInput = rawInput.trim();
