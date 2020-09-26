@@ -1,25 +1,43 @@
 package tasks;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
+
+import static common.Utils.*;
+
 public class Deadline extends Task {
     private static final String CODE = "D";
-    private String by;
+    private LocalDate date;
+    private LocalTime time;
 
-    public Deadline(String description, String by) {
+    public Deadline(String description, String dateString, String timeString) {
         super(description);
-        setBy(by);
+        date = dateStringToDate(dateString);
+        time = timeStringToTime(timeString);
     }
 
-    public Deadline(boolean done, String description, String by) {
+    public Deadline(boolean done, String description, String dateString, String timeString) {
         super(done, description);
-        setBy(by);
+        date = dateStringToDate(dateString);
+        time = timeStringToTime(timeString);
     }
 
-    public String getBy() {
-        return by;
+
+
+    public LocalDate getDate() {
+        return date;
     }
 
-    public void setBy(String by) {
-        this.by = by;
+    public void setDate(LocalDate date) {
+        this.date = date;
+    }
+
+    public LocalTime getTime() {
+        return time;
+    }
+
+    public void setTime(LocalTime time) {
+        this.time = time;
     }
 
     @Override
@@ -29,12 +47,12 @@ public class Deadline extends Task {
 
     @Override
     public String getDatetime() {
-        return getBy();
+        return dateToString(getDate()) + "|" + timeToString(getTime());
     }
 
     @Override
     public String toString() {
         return "[" + getCode() + "]" + getStatusIcon() + " " +
-                getDescription() + " (by: " + getDatetime() + ")";
+                getDescription() + " (by: " + dateToString(getDate()) + " " + timeToString(getTime()) + ")";
     }
 }
