@@ -4,8 +4,8 @@ package tasks;
  * Representation of a generic task object.
  */
 public abstract class Task {
-    private static final String TICK_ICON = "[\u2714]";
-    private static final String CROSS_ICON = "[\u2716]";
+    private static final String TICK_ICON = "[T]";
+    private static final String CROSS_ICON = "[X]";
     private String description;
     private boolean isDone;
 
