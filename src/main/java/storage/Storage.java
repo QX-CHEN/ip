@@ -79,7 +79,7 @@ public class Storage {
 
     private static void processLine(TaskList tasks, String line) {
         String[] parts = line.split("\\|");
-        boolean done = (!"0".equals(parts[1]));
+        boolean done = ("1".equals(parts[1]));
         switch (parts[0]) {
         case "T":
             String todoDescription = parts[2];
@@ -87,13 +87,15 @@ public class Storage {
             break;
         case "E":
             String eventDescription = parts[2];
-            String eventDatetime = parts[3];
-            tasks.add(new Event(done, eventDescription, eventDatetime));
+            String eventDate = parts[3];
+            String eventTime = parts[4];
+            tasks.add(new Event(done, eventDescription, eventDate, eventTime));
             break;
         case "D":
             String deadlineDescription = parts[2];
-            String deadlineDatetime = parts[3];
-            tasks.add(new Deadline(done, deadlineDescription, deadlineDatetime));
+            String deadlineDate = parts[3];
+            String deadlineTime = parts[4];
+            tasks.add(new Deadline(done, deadlineDescription, deadlineDate, deadlineTime));
             break;
         default:
             break;

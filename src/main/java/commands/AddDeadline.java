@@ -14,9 +14,12 @@ import java.util.regex.Pattern;
 public class AddDeadline extends AddCommand{
     public static final String COMMAND_WORD = "deadline";
 
-    private static final Pattern COMMAND_PATTERN = Pattern.compile(COMMAND_WORD + "(.*\\S.*)/by(.*\\S.*)");
+    // pattern: deadline description /by dd/mm/yyyy HHmm
+    private static final Pattern COMMAND_PATTERN = Pattern.compile(COMMAND_WORD + " (?<description>(\\w+\\s*)+\\w*)" +
+            " /by (?<date>\\d{2}/\\d{2}/\\d{4}) (?<time>\\d{4})");
     private final String description;
-    private final String datetime;
+    private final String date;
+    private final String time;
 
     /**
      * Creates a AddDeadline Command with trimmed input.
@@ -26,8 +29,9 @@ public class AddDeadline extends AddCommand{
     public AddDeadline(String trimmedInput) throws InvalidCommandException {
         Matcher matcher = COMMAND_PATTERN.matcher(trimmedInput);
         if (matcher.find()) {
-            description = matcher.group(1).trim();
-            datetime = matcher.group(2).trim();
+            description = matcher.group("description");
+            date = matcher.group("date");
+            time = matcher.group("time");
         } else {
             throw new InvalidCommandException();
         }
@@ -39,7 +43,7 @@ public class AddDeadline extends AddCommand{
      * @param tasks runtime storage of tasks.
      */
     public void execute(TaskList tasks) {
-        Deadline deadline = new Deadline(description, datetime);
+        Deadline deadline = new Deadline(description, date, time);
         tasks.add(deadline);
         Storage.updateFile(tasks);
         printAddMessage(tasks);
