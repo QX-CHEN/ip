@@ -16,10 +16,11 @@ public class AddEvent extends AddCommand {
 
     // pattern: event description /at dd/mm/yyyy HHmm
     private static final Pattern COMMAND_PATTERN = Pattern.compile(COMMAND_WORD + " (?<description>(\\w+\\s*)+\\w*)" +
-            " /at (?<date>\\d{2}/\\d{2}/\\d{4}) (?<time>\\d{4})");
+            " /at (?<date>\\d{2}/\\d{2}/\\d{4}) (?<start>\\d{4})-(?<end>\\d{4})");
     private final String description;
     private final String date;
-    private final String time;
+    private final String start;
+    private final String end;
 
     /**
      * Creates a AddEvent Command with trimmed input.
@@ -32,7 +33,8 @@ public class AddEvent extends AddCommand {
         if (matcher.find()) {
             description = matcher.group("description");
             date = matcher.group("date");
-            time = matcher.group("time");
+            start = matcher.group("start");
+            end = matcher.group("end");
         } else {
             throw new InvalidCommandException();
         }
@@ -44,7 +46,7 @@ public class AddEvent extends AddCommand {
      * @param tasks runtime storage of tasks.
      */
     public void execute(TaskList tasks) {
-        Event event = new Event(description, date, time);
+        Event event = new Event(description, date, start, end);
         tasks.add(event);
         Storage.updateFile(tasks);
         printAddMessage(tasks);

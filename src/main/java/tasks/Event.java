@@ -11,19 +11,22 @@ import static common.Utils.*;
 public class Event extends Task {
     private static final String CODE = "E";
     private LocalDate date;
-    private LocalTime time;
+    private LocalTime start;
+    private LocalTime end;
 
     /**
      * Creates a Event task with description and time.
      *
      * @param description description of a event.
      * @param dateString date of a event.
-     * @param timeString time of a event.
+     * @param startString start time of a event.
+     * @param endString end time of a event.
      */
-    public Event(String description, String dateString, String timeString) {
+    public Event(String description, String dateString, String startString, String endString) {
         super(description);
         date = dateStringToDate(dateString);
-        time = timeStringToTime(timeString);
+        start = timeStringToTime(startString);
+        end = timeStringToTime(endString);
     }
 
     /**
@@ -32,12 +35,14 @@ public class Event extends Task {
      * @param done status of a task.
      * @param description description of a task.
      * @param dateString date of a event.
-     * @param timeString time of a event.
+     * @param startString start time of a event.
+     * @param endString end time of a event.
      */
-    public Event(boolean done, String description, String dateString, String timeString) {
+    public Event(boolean done, String description, String dateString, String startString, String endString) {
         super(done, description);
         date = dateStringToDate(dateString);
-        time = timeStringToTime(timeString);
+        start = timeStringToTime(startString);
+        end = timeStringToTime(endString);
     }
 
     /**
@@ -59,21 +64,39 @@ public class Event extends Task {
     }
 
     /**
-     * Get time of an event.
+     * Get start time of an event.
      *
-     * @return time of an event.
+     * @return start time of an event.
      */
-    public LocalTime getTime() {
-        return time;
+    public LocalTime getStartTime() {
+        return start;
     }
 
     /**
-     * Set time of an event.
+     * Set start time of an event.
      *
-     * @param time time of an event.
+     * @param start start time of an event.
      */
-    public void setTime(LocalTime time) {
-        this.time = time;
+    public void setStartTime(LocalTime start) {
+        this.start = start;
+    }
+
+    /**
+     * Get end time of an event.
+     *
+     * @return end time of an event.
+     */
+    public LocalTime getEndTime() {
+        return end;
+    }
+
+    /**
+     * Set end time of an event.
+     *
+     * @param end  end time of an event.
+     */
+    public void setEndTime(LocalTime end) {
+        this.end = end;
     }
 
     /**
@@ -89,7 +112,7 @@ public class Event extends Task {
      */
     @Override
     public String getDatetime() {
-        return dateToString(getDate()) + "|" + timeToString(getTime());
+        return dateToString(getDate()) + "|" + timeToString(getStartTime()) + "|" + timeToString(getEndTime());
     }
 
     /**
@@ -98,6 +121,7 @@ public class Event extends Task {
     @Override
     public String toString() {
         return "[" + getCode() + "]" + getStatusIcon() + " " +
-                getDescription() + " (at: " + dateToString(getDate()) + " " + timeToString(getTime()) + ")";
+                getDescription() + " (at: " + dateToString(getDate()) +
+                " " + timeToString(getStartTime()) + "-" + timeToString(getEndTime()) + ")";
     }
 }

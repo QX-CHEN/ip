@@ -88,8 +88,9 @@ public class Storage {
         case "E":
             String eventDescription = parts[2];
             String eventDate = parts[3];
-            String eventTime = parts[4];
-            tasks.add(new Event(done, eventDescription, eventDate, eventTime));
+            String eventStart = parts[4];
+            String eventEnd = parts[5];
+            tasks.add(new Event(done, eventDescription, eventDate, eventStart, eventEnd));
             break;
         case "D":
             String deadlineDescription = parts[2];
