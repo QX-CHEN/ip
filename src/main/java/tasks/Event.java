@@ -1,25 +1,41 @@
 package tasks;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
+
+import static common.Utils.*;
+
 public class Event extends Task {
     private static final String CODE = "E";
-    private String at;
+    private LocalDate date;
+    private LocalTime time;
 
-    public Event(String description, String at) {
+    public Event(String description, String dateString, String timeString) {
         super(description);
-        setAt(at);
+        date = dateStringToDate(dateString);
+        time = timeStringToTime(timeString);
     }
 
-    public Event(boolean done, String description, String at) {
+    public Event(boolean done, String description, String dateString, String timeString) {
         super(done, description);
-        setAt(at);
+        date = dateStringToDate(dateString);
+        time = timeStringToTime(timeString);
     }
 
-    public String getAt() {
-        return at;
+    public LocalDate getDate() {
+        return date;
     }
 
-    public void setAt(String at) {
-        this.at = at;
+    public void setDate(LocalDate date) {
+        this.date = date;
+    }
+
+    public LocalTime getTime() {
+        return time;
+    }
+
+    public void setTime(LocalTime time) {
+        this.time = time;
     }
 
     @Override
@@ -29,12 +45,12 @@ public class Event extends Task {
 
     @Override
     public String getDatetime() {
-        return getAt();
+        return dateToString(getDate()) + "|" + timeToString(getTime());
     }
 
     @Override
     public String toString() {
         return "[" + getCode() + "]" + getStatusIcon() + " " +
-                getDescription() + " (at: " + getDatetime() + ")";
+                getDescription() + " (at: " + dateToString(getDate()) + " " + timeToString(getTime()) + ")";
     }
 }
