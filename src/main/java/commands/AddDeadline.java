@@ -2,11 +2,15 @@ package commands;
 
 import data.TaskList;
 import exceptions.InvalidCommandException;
+import storage.Storage;
 import tasks.Deadline;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+/**
+ * Representation of command that adds a Deadline task to TaskList.
+ */
 public class AddDeadline extends AddCommand{
     public static final String COMMAND_WORD = "deadline";
 
@@ -17,6 +21,11 @@ public class AddDeadline extends AddCommand{
     private final String date;
     private final String time;
 
+    /**
+     * Creates a AddDeadline Command with trimmed input.
+     *
+     * @param trimmedInput raw input without leading and trailing white space.
+     */
     public AddDeadline(String trimmedInput) throws InvalidCommandException {
         Matcher matcher = COMMAND_PATTERN.matcher(trimmedInput);
         if (matcher.find()) {
@@ -28,10 +37,15 @@ public class AddDeadline extends AddCommand{
         }
     }
 
+    /**
+     * Executes the command by creating a Deadline task and add it to TaskList.
+     *
+     * @param tasks runtime storage of tasks.
+     */
     public void execute(TaskList tasks) {
         Deadline deadline = new Deadline(description, date, time);
         tasks.add(deadline);
-        updateFile(tasks);
+        Storage.updateFile(tasks);
         printAddMessage(tasks);
     }
 }

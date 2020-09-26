@@ -12,10 +12,18 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Scanner;
 
+/**
+ * Storage class handles loading of data from file and saving of data to file.
+ */
 public class Storage {
     private static final String DIRECTORY_NAME = "data";
     private static final String FILE_NAME = "Duke.txt";
 
+    /**
+     * Write to file the latest data of tasks.
+     *
+     * @param tasks latest TaskList object after modification.
+     */
     public static void updateFile(TaskList tasks) {
         try {
             writeTasksToFile(tasks);
@@ -33,6 +41,11 @@ public class Storage {
         file.close();
     }
 
+    /**
+     * Load data from file and add tasks to TaskList.
+     *
+     * @param tasks empty TaskList.
+     */
     public static void loadTasks(TaskList tasks) {
         if (!createDirectory()) {
             try {

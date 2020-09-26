@@ -1,12 +1,13 @@
 package commands;
 
 import data.TaskList;
-import storage.Storage;
 
+/**
+ * Representation of generic command.
+ */
 public abstract class Command {
+    /**
+     * Execute the command.
+     */
     public abstract void execute(TaskList tasks);
-
-    protected void updateFile(TaskList tasks) {
-        Storage.updateFile(tasks);
-    }
 }
