@@ -13,7 +13,7 @@ import static common.Message.ADD_MESSAGE;
 /**
  * Representation of command that adds a Event task to TaskList.
  */
-public class AddEvent extends AddCommand {
+public class EventCommand extends Command {
     public static final String COMMAND_WORD = "event";
 
     // pattern: event description /at dd/mm/yyyy HHmm
@@ -30,7 +30,7 @@ public class AddEvent extends AddCommand {
      * @param trimmedInput raw input without leading and trailing white space.
      * @throws InvalidCommandException if the trimmed input format does not match with the pattern.
      */
-    public AddEvent(String trimmedInput) throws InvalidCommandException {
+    public EventCommand(String trimmedInput) throws InvalidCommandException {
         Matcher matcher = COMMAND_PATTERN.matcher(trimmedInput);
         if (matcher.find()) {
             description = matcher.group("description");

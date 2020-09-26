@@ -19,12 +19,12 @@ public class Parser {
      */
     public static Command processInput(String rawInput) throws InvalidCommandException, UnknownCommandException {
         String trimmedInput = rawInput.trim();
-        if (trimmedInput.startsWith(AddTodo.COMMAND_WORD)) {
-            return new AddTodo(trimmedInput);
-        } else if (trimmedInput.startsWith(AddEvent.COMMAND_WORD)) {
-            return new AddEvent(trimmedInput);
-        } else if (trimmedInput.startsWith(AddDeadline.COMMAND_WORD)) {
-            return new AddDeadline(trimmedInput);
+        if (trimmedInput.startsWith(TodoCommand.COMMAND_WORD)) {
+            return new TodoCommand(trimmedInput);
+        } else if (trimmedInput.startsWith(EventCommand.COMMAND_WORD)) {
+            return new EventCommand(trimmedInput);
+        } else if (trimmedInput.startsWith(DeadlineCommand.COMMAND_WORD)) {
+            return new DeadlineCommand(trimmedInput);
         } else if (trimmedInput.startsWith(DoneCommand.COMMAND_WORD)) {
             return new DoneCommand(trimmedInput);
         } else if (trimmedInput.startsWith(DeleteCommand.COMMAND_WORD)) {

@@ -13,7 +13,7 @@ import static common.Message.ADD_MESSAGE;
 /**
  * Representation of command that adds a Deadline task to TaskList.
  */
-public class AddDeadline extends AddCommand{
+public class DeadlineCommand extends Command {
     public static final String COMMAND_WORD = "deadline";
 
     // pattern: deadline description /by dd/mm/yyyy HHmm
@@ -29,7 +29,7 @@ public class AddDeadline extends AddCommand{
      * @param trimmedInput raw input without leading and trailing white space.
      * @throws InvalidCommandException if the trimmed input format does not match with the pattern.
      */
-    public AddDeadline(String trimmedInput) throws InvalidCommandException {
+    public DeadlineCommand(String trimmedInput) throws InvalidCommandException {
         Matcher matcher = COMMAND_PATTERN.matcher(trimmedInput);
         if (matcher.find()) {
             description = matcher.group("description");

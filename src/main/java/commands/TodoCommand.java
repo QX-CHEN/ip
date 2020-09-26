@@ -13,7 +13,7 @@ import static common.Message.ADD_MESSAGE;
 /**
  * Representation of command that adds a Todo task to TaskList.
  */
-public class AddTodo extends AddCommand {
+public class TodoCommand extends Command {
     public static final String COMMAND_WORD = "todo";
     private static final Pattern COMMAND_PATTERN = Pattern.compile(COMMAND_WORD + "(.*\\S.*)");
 
@@ -24,7 +24,7 @@ public class AddTodo extends AddCommand {
      *
      * @param trimmedInput raw input without leading and trailing white space.
      */
-    public AddTodo(String trimmedInput) throws InvalidCommandException {
+    public TodoCommand(String trimmedInput) throws InvalidCommandException {
         Matcher matcher = COMMAND_PATTERN.matcher(trimmedInput);
         if (matcher.find()) {
             description = matcher.group(1).trim();
