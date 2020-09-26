@@ -27,6 +27,8 @@ public class Parser {
             return new DoneCommand(trimmedInput);
         } else if (trimmedInput.startsWith(DeleteCommand.COMMAND_WORD)) {
             return new DeleteCommand(trimmedInput);
+        } else if (trimmedInput.startsWith(FindCommand.COMMAND_WORD)) {
+            return new FindCommand(trimmedInput);
         } else if (trimmedInput.startsWith(ListCommand.COMMAND_WORD)) {
             return new ListCommand();
         } else if (trimmedInput.startsWith(ByeCommand.COMMAND_WORD)) {
