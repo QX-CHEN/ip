@@ -17,7 +17,7 @@ public class Utils {
         } else if (dateString.contains("-")) {
             return LocalDate.parse(dateString, DateTimeFormatter.ofPattern("yyyy-MM-dd"));
         } else {
-            Ui.printMessageWithNewLine("Unknown date format!");
+            Ui.printMessageWithHorizontalLines("Unknown date format!");
             return null;
         }
     }

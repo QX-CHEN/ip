@@ -2,6 +2,8 @@ package commands;
 
 import data.TaskList;
 
+import static common.Message.LIST_MESSAGE;
+
 /**
  * Representation of command that list all the tasks.
  */
@@ -13,7 +15,7 @@ public class ListCommand extends Command{
      *
      * @param tasks runtime storage of tasks.
      */
-    public void execute(TaskList tasks) {
-        tasks.list();
+    public CommandResult execute(TaskList tasks) {
+        return new CommandResult(LIST_MESSAGE, tasks);
     }
 }

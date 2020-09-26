@@ -1,6 +1,6 @@
 todo borrow book
-deadline return book /by Sunday
-event project meeting /at Monday 2-4pm
+deadline return book /by 19/01/2020 1700
+event project meeting /at 20/03/2019 1500-1530
 list
 done 2
 list
@@ -14,6 +14,7 @@ event
 event    /at 3pm
 event games /by 5pm
 event meeting /at TUE 4pm
+event meeting /at 20/03/2020 1700-1900
 lsit
 list
 dealine foo /by 8pm
@@ -21,6 +22,7 @@ deadline
 deadline      /by 9pm
 deadline abba /at 6pm
 deadline Report /by 10pm
+deadline Report /by 20/09/2020 2200
 list
 done
 done two

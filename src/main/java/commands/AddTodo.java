@@ -8,6 +8,8 @@ import tasks.Todo;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import static common.Message.ADD_MESSAGE;
+
 /**
  * Representation of command that adds a Todo task to TaskList.
  */
@@ -36,10 +38,10 @@ public class AddTodo extends AddCommand {
      *
      * @param tasks runtime storage of tasks.
      */
-    public void execute(TaskList tasks) {
+    public CommandResult execute(TaskList tasks) {
         Todo todo = new Todo(description);
         tasks.add(todo);
         Storage.updateFile(tasks);
-        printAddMessage(tasks);
+        return new CommandResult(ADD_MESSAGE, todo, tasks.size());
     }
 }

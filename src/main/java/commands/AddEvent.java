@@ -8,6 +8,8 @@ import tasks.Event;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import static common.Message.ADD_MESSAGE;
+
 /**
  * Representation of command that adds a Event task to TaskList.
  */
@@ -45,10 +47,10 @@ public class AddEvent extends AddCommand {
      *
      * @param tasks runtime storage of tasks.
      */
-    public void execute(TaskList tasks) {
+    public CommandResult execute(TaskList tasks) {
         Event event = new Event(description, date, start, end);
         tasks.add(event);
         Storage.updateFile(tasks);
-        printAddMessage(tasks);
+        return new CommandResult(ADD_MESSAGE, event, tasks.size());
     }
 }

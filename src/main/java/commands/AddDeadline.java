@@ -8,6 +8,8 @@ import tasks.Deadline;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import static common.Message.ADD_MESSAGE;
+
 /**
  * Representation of command that adds a Deadline task to TaskList.
  */
@@ -43,10 +45,10 @@ public class AddDeadline extends AddCommand{
      *
      * @param tasks runtime storage of tasks.
      */
-    public void execute(TaskList tasks) {
+    public CommandResult execute(TaskList tasks) {
         Deadline deadline = new Deadline(description, date, time);
         tasks.add(deadline);
         Storage.updateFile(tasks);
-        printAddMessage(tasks);
+        return new CommandResult(ADD_MESSAGE, deadline, tasks.size());
     }
 }

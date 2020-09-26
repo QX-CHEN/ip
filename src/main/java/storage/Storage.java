@@ -28,7 +28,7 @@ public class Storage {
         try {
             writeTasksToFile(tasks);
         } catch (IOException e) {
-            Ui.printMessageWithNewLine("Check file path!");
+            Ui.printMessageWithHorizontalLines("\t Check file path!");
         }
     }
 
@@ -51,7 +51,7 @@ public class Storage {
             try {
                 readTasksFromFile(tasks);
             } catch (FileNotFoundException e) {
-                Ui.printMessageWithNewLine("File not found!");
+                Ui.printMessageWithHorizontalLines("\t File not found!");
             }
         }
     }

@@ -2,10 +2,11 @@ package commands;
 
 import data.TaskList;
 import exceptions.InvalidCommandException;
-import ui.Ui;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
+import static common.Message.FIND_MESSAGE;
 
 public class FindCommand extends Command {
     public static final String COMMAND_WORD = "find";
@@ -22,17 +23,13 @@ public class FindCommand extends Command {
         }
     }
 
-    public void execute(TaskList tasks) {
-        Ui.printHorizontalLine();
-        Ui.printMessageWithNewLine("\t Here are the matching tasks in your list:");
-        int count = 1;
+    public CommandResult execute(TaskList tasks) {
+        TaskList filteredTasks = new TaskList();
         for (int i = 0; i < tasks.size(); i++) {
             if (tasks.get(i).getDescription().contains(keyword)) {
-                Ui.printMessageWithoutNewLine("\t " + count + ". ");
-                Ui.printTask(tasks.get(i));
-                count++;
+                filteredTasks.add(tasks.get(i));
             }
         }
-        Ui.printHorizontalLine();
+        return new CommandResult(FIND_MESSAGE, tasks);
     }
 }

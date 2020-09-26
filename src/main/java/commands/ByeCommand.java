@@ -3,6 +3,8 @@ package commands;
 import data.TaskList;
 import ui.Ui;
 
+import static common.Message.BYE_MESSAGE;
+
 /**
  * Representation of command that stops the program.
  */
@@ -14,7 +16,7 @@ public class ByeCommand extends Command{
      *
      * @param tasks runtime storage of tasks.
      */
-    public void execute(TaskList tasks) {
-        Ui.bye();
+    public CommandResult execute(TaskList tasks) {
+        return new CommandResult(BYE_MESSAGE);
     }
 }

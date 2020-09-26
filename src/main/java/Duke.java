@@ -1,13 +1,18 @@
 import commands.ByeCommand;
 import commands.Command;
+import commands.CommandResult;
 import data.TaskList;
 import exceptions.InvalidCommandException;
+import exceptions.InvalidTaskNumberException;
+import exceptions.TaskDoneException;
 import exceptions.UnknownCommandException;
 import parser.Parser;
 import storage.Storage;
 import ui.Ui;
 
 import java.util.Scanner;
+
+import static common.Message.*;
 
 /**
  * Duke class starts, runs and stops the main program.
@@ -36,14 +41,19 @@ public class Duke {
         while (running) {
             try {
                 Command command = Parser.processInput(scanner.nextLine());
-                command.execute(tasks);
+                CommandResult result = command.execute(tasks);
+                Ui.printCommandResult(result);
                 if (command instanceof ByeCommand) {
                     running = false;
                 }
-            }  catch (NumberFormatException e) {
-                Ui.printMessageWithNewLine("\tInvalid task number!");
-            } catch (UnknownCommandException | InvalidCommandException e) {
-                Ui.printMessageWithNewLine(e);
+            } catch (NumberFormatException | InvalidTaskNumberException e) {
+                Ui.printMessageWithHorizontalLines(INVALID_TASK_NUMBER_MESSAGE);
+            } catch (UnknownCommandException e) {
+                Ui.printMessageWithHorizontalLines(UNKNOWN_COMMAND_MESSAGE);
+            } catch (InvalidCommandException e) {
+                Ui.printMessageWithHorizontalLines(INVALID_COMMAND_MESSAGE);
+            } catch (TaskDoneException e) {
+                Ui.printMessageWithHorizontalLines(TASK_ALREADY_DONE_MESSAGE);
             }
         }
     }
