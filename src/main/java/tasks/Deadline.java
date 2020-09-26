@@ -1,10 +1,9 @@
 package tasks;
 
-import ui.Ui;
-
 import java.time.LocalDate;
 import java.time.LocalTime;
-import java.time.format.DateTimeFormatter;
+
+import static common.Utils.*;
 
 public class Deadline extends Task {
     private static final String CODE = "D";
@@ -23,45 +22,7 @@ public class Deadline extends Task {
         time = timeStringToTime(timeString);
     }
 
-    private LocalDate dateStringToDate(String dateString) {
-        if (dateString == null) {
-            return null;
-        }
-        if (dateString.contains("/")) {
-            return LocalDate.parse(dateString, DateTimeFormatter.ofPattern("dd/MM/yyyy"));
-        } else if (dateString.contains("-")) {
-            return LocalDate.parse(dateString, DateTimeFormatter.ofPattern("yyyy-MM-dd"));
-        } else {
-            Ui.printMessageWithNewLine("Unknown date format!");
-            return null;
-        }
-    }
 
-    private LocalTime timeStringToTime(String timeString) {
-        if (timeString == null) {
-            return null;
-        }
-        int time = Integer.parseInt(timeString);
-        int hour = time / 100;
-        int minute = time % 100;
-        return LocalTime.of(hour, minute);
-    }
-
-    private String dateToString(LocalDate date) {
-        if (date == null) {
-            return "";
-        } else {
-            return date.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
-        }
-    }
-
-    private String timeToString(LocalTime time) {
-        if (time == null) {
-            return "";
-        } else {
-            return time.format(DateTimeFormatter.ofPattern("HHmm"));
-        }
-    }
 
     public LocalDate getDate() {
         return date;
