@@ -40,18 +40,38 @@ public class Deadline extends Task {
         time = timeStringToTime(timeString);
     }
 
+    /**
+     * Get date of a deadline.
+     *
+     * @return date of a deadline.
+     */
     public LocalDate getDate() {
         return date;
     }
 
+    /**
+     * Set date of a deadline.
+     *
+     * @param date of a deadline.
+     */
     public void setDate(LocalDate date) {
         this.date = date;
     }
 
+    /**
+     * Get time of a deadline.
+     *
+     * @return time of a deadline.
+     */
     public LocalTime getTime() {
         return time;
     }
 
+    /**
+     * Set time of a deadline.
+     *
+     * @param time of a deadline.
+     */
     public void setTime(LocalTime time) {
         this.time = time;
     }

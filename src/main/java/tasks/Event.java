@@ -40,18 +40,38 @@ public class Event extends Task {
         time = timeStringToTime(timeString);
     }
 
+    /**
+     * Get date of an event.
+     *
+     * @return date of an event.
+     */
     public LocalDate getDate() {
         return date;
     }
 
+    /**
+     * Set date of an event.
+     *
+     * @param date date of an event.
+     */
     public void setDate(LocalDate date) {
         this.date = date;
     }
 
+    /**
+     * Get time of an event.
+     *
+     * @return time of an event.
+     */
     public LocalTime getTime() {
         return time;
     }
 
+    /**
+     * Set time of an event.
+     *
+     * @param time time of an event.
+     */
     public void setTime(LocalTime time) {
         this.time = time;
     }
