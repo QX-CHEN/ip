@@ -4,8 +4,8 @@ Duke is a desktop app for managing tasks, optimized for use via Command Line Int
 It allows users to add different types of task and provides convenient commands to modify and 
 view the tasks.
 
-- [Quick start](#Quick-start)
-- [Features](#Features)
+- [Quick start](#quick-start)
+- [Features](#features)
     - [Adding Todo](#adding-a-todo-task--todo)
     - [Adding Event](#adding-an-event-task--event)
     - [Adding Deadline](#adding-a-deadline-task--deadline)
@@ -14,8 +14,8 @@ view the tasks.
     - [Removing task](#removing-a-task--delete)
     - [Searching task](#searching-relevant-tasks--find)
     - [Exiting program](#exiting-program--bye)
-- [FAQ](#FAQ)
-- [Command summary](#Command-summary)
+- [FAQ](#faq)
+- [Command summary](#command-summary)
 
 ## Quick start
 
