@@ -1,17 +1,44 @@
 # User Guide
 
+Duke is a desktop app for managing tasks, optimized for use via Command Line Interface (CLI).
+It allows users to add different types of task and provides convenient commands to modify and 
+view the tasks.
+
+- [Quick start](#Quick start)
+- [Features](#Features)
+- [FAQ](#FAQ)
+- [Command summary](#Command summary)
+
+## Quick start
+
+1. Download and install Java 11 in your Computer.
+
+2. Download the latest "Duke.jar" from [here](https://github.com/QX-CHEN/ip/releases/download/A-Jar/Duke.jar).
+
+3. To use existing data file (optional):
+    - Create a "data" folder in the same folder as "Duke.jar".
+    - Copy existing to "data" folder and name it "Duke.txt".
+
+4. Open terminal/command prompt and run "Duke.jar" with following command:
+
+    `java -jar Duke.jar`
+
+5. Type a command in terminal/command prompt and press Enter to execute it.
+
+6. Refer to the [Features](#features) below for details of each command.
+
 ## Features 
 
 ### Notes about command format:
-    - Words in UPPER_CASE are the parameters to be supplied by the user.
-      e.g. in "todo DESCRIPTION", DESCRIPTION is a parameter which can be used 
+- Words in UPPER_CASE are the parameters to be supplied by the user. 
+    - e.g. in "todo DESCRIPTION", DESCRIPTION is a parameter which can be used 
       as "todo user guide".
     
-    - Input date format is dd/MM/yyyy.
-      e.g. 20/02/2020
+- Input date format is dd/MM/yyyy.
+    - e.g. 20/02/2020
       
-    - Input time format is HHmm in 24-hrs.
-      e.g. 1830
+- Input time format is HHmm in 24-hrs.
+    - e.g. 1830
 
 ### Adding a Todo task : `todo`
 
@@ -153,3 +180,24 @@ Expected outcome:
 	____________________________________________________________
 	 Bye. Hope to see you again soon!
 	____________________________________________________________
+	
+### Saving data to file
+
+Data will be automatically saved after modification commands like 
+`todo`, `delete`, `done` and so forth.
+
+## FAQ
+
+## Command summary
+
+Action | Format | Example
+------ | ------ | -------
+todo | `todo DESCRIPTION` | `todo user guide`
+event | `event DESCRIPTION /at DATE START-END` | `event meeting 20/02/2020 1700-1900`
+deadline | `deadline DESCRIPTION /by DATE TIME` | `deadline report 24/10/2020 2359`
+done | `done INDEX` | `done 1`
+delete | `delete INDEX` | `delete 2`
+find | `find KEYWORD` | `find meet`
+list | `list` | `list`
+bye | `bye` | `bye`
+
