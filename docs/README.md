@@ -6,6 +6,14 @@ view the tasks.
 
 - [Quick start](#Quick-start)
 - [Features](#Features)
+    - [Adding Todo](#adding-a-todo-task--todo)
+    - [Adding Event](#adding-an-event-task--event)
+    - [Adding Deadline](#adding-a-deadline-task--deadline)
+    - [Displaying tasks](#displaying-tasks--list)
+    - [Marking task as done](#changing-status-of-a-task--done)
+    - [Removing task](#removing-a-task--delete)
+    - [Searching task](#searching-relevant-tasks--find)
+    - [Exiting program](#exiting-program--bye)
 - [FAQ](#FAQ)
 - [Command summary](#Command-summary)
 
