@@ -4,10 +4,10 @@ Duke is a desktop app for managing tasks, optimized for use via Command Line Int
 It allows users to add different types of task and provides convenient commands to modify and 
 view the tasks.
 
-- [Quick start](#Quick start)
+- [Quick start](#Quick-start)
 - [Features](#Features)
 - [FAQ](#FAQ)
-- [Command summary](#Command summary)
+- [Command summary](#Command-summary)
 
 ## Quick start
 
