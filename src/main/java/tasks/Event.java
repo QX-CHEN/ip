@@ -1,5 +1,7 @@
 package tasks;
 
+import exceptions.UnknownDateFormatException;
+
 import java.time.LocalDate;
 import java.time.LocalTime;
 
@@ -22,7 +24,8 @@ public class Event extends Task {
      * @param startString start time of a event.
      * @param endString end time of a event.
      */
-    public Event(String description, String dateString, String startString, String endString) {
+    public Event(String description, String dateString, String startString, String endString)
+            throws UnknownDateFormatException {
         super(description);
         date = dateStringToDate(dateString);
         start = timeStringToTime(startString);
@@ -38,7 +41,8 @@ public class Event extends Task {
      * @param startString start time of a event.
      * @param endString end time of a event.
      */
-    public Event(boolean done, String description, String dateString, String startString, String endString) {
+    public Event(boolean done, String description, String dateString, String startString, String endString)
+            throws UnknownDateFormatException {
         super(done, description);
         date = dateStringToDate(dateString);
         start = timeStringToTime(startString);

@@ -2,6 +2,7 @@ package commands;
 
 import data.TaskList;
 import exceptions.InvalidCommandException;
+import exceptions.UnknownDateFormatException;
 import storage.Storage;
 import tasks.Event;
 
@@ -47,7 +48,7 @@ public class EventCommand extends Command {
      *
      * @param tasks runtime storage of tasks.
      */
-    public CommandResult execute(TaskList tasks) {
+    public CommandResult execute(TaskList tasks) throws UnknownDateFormatException {
         Event event = new Event(description, date, start, end);
         tasks.add(event);
         Storage.updateFile(tasks);

@@ -30,12 +30,10 @@ public class Ui {
     }
 
     /**
-     * Prints a greeting message.
+     * Prints greeting message.
      */
     public static void greet() {
-        printHorizontalLine();
-        System.out.println(GREET_MESSAGE);
-        printHorizontalLine();
+        printMessageWithHorizontalLines(GREET_MESSAGE);
     }
 
     public static void printCommandResult(CommandResult commandResult) {

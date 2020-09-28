@@ -1,6 +1,6 @@
 package common;
 
-import ui.Ui;
+import exceptions.UnknownDateFormatException;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -8,7 +8,7 @@ import java.time.format.DateTimeFormatter;
 
 public class Utils {
 
-    public static LocalDate dateStringToDate(String dateString) {
+    public static LocalDate dateStringToDate(String dateString) throws UnknownDateFormatException {
         if (dateString == null) {
             return null;
         }
@@ -17,8 +17,7 @@ public class Utils {
         } else if (dateString.contains("-")) {
             return LocalDate.parse(dateString, DateTimeFormatter.ofPattern("yyyy-MM-dd"));
         } else {
-            Ui.printMessageWithHorizontalLines("Unknown date format!");
-            return null;
+            throw new UnknownDateFormatException();
         }
     }
 
