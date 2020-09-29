@@ -1,7 +1,5 @@
 package tasks;
 
-import exceptions.UnknownDateFormatException;
-
 import java.time.LocalDate;
 import java.time.LocalTime;
 
@@ -22,7 +20,7 @@ public class Deadline extends Task {
      * @param dateString date of a deadline.
      * @param timeString time of a deadline.
      */
-    public Deadline(String description, String dateString, String timeString) throws UnknownDateFormatException {
+    public Deadline(String description, String dateString, String timeString) {
         super(description);
         date = dateStringToDate(dateString);
         time = timeStringToTime(timeString);
@@ -36,8 +34,7 @@ public class Deadline extends Task {
      * @param dateString date of a deadline.
      * @param timeString time of a deadline.
      */
-    public Deadline(boolean done, String description, String dateString, String timeString)
-            throws UnknownDateFormatException {
+    public Deadline(boolean done, String description, String dateString, String timeString) {
         super(done, description);
         date = dateStringToDate(dateString);
         time = timeStringToTime(timeString);

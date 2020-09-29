@@ -1,10 +1,10 @@
 package storage;
 
 import data.TaskList;
-import exceptions.UnknownDateFormatException;
 import tasks.Deadline;
 import tasks.Event;
 import tasks.Todo;
+import ui.Ui;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -24,8 +24,12 @@ public class Storage {
      *
      * @param tasks latest TaskList object after modification.
      */
-    public static void updateFile(TaskList tasks) throws IOException {
-        writeTasksToFile(tasks);
+    public static void updateFile(TaskList tasks) {
+        try {
+            writeTasksToFile(tasks);
+        } catch (IOException e) {
+            Ui.printMessageWithHorizontalLines("\t Check file path!");
+        }
     }
 
     private static void writeTasksToFile(TaskList tasks) throws IOException {
@@ -42,9 +46,13 @@ public class Storage {
      *
      * @param tasks empty TaskList.
      */
-    public static void loadTasks(TaskList tasks) throws FileNotFoundException, UnknownDateFormatException {
+    public static void loadTasks(TaskList tasks) {
         if (!createDirectory()) {
-            readTasksFromFile(tasks);
+            try {
+                readTasksFromFile(tasks);
+            } catch (FileNotFoundException e) {
+                Ui.printMessageWithHorizontalLines("\t File not found!");
+            }
         }
     }
 
@@ -61,7 +69,7 @@ public class Storage {
         return directoryCreated;
     }
 
-    private static void readTasksFromFile(TaskList tasks) throws FileNotFoundException, UnknownDateFormatException {
+    private static void readTasksFromFile(TaskList tasks) throws FileNotFoundException {
         File file = new File(DIRECTORY_NAME + "/" + FILE_NAME);
         Scanner scanner = new Scanner(file);
         while (scanner.hasNext()) {
@@ -69,7 +77,7 @@ public class Storage {
         }
     }
 
-    private static void processLine(TaskList tasks, String line) throws UnknownDateFormatException {
+    private static void processLine(TaskList tasks, String line) {
         String[] parts = line.split("\\|");
         boolean done = ("1".equals(parts[1]));
         switch (parts[0]) {

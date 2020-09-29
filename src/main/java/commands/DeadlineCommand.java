@@ -2,7 +2,6 @@ package commands;
 
 import data.TaskList;
 import exceptions.InvalidCommandException;
-import exceptions.UnknownDateFormatException;
 import storage.Storage;
 import tasks.Deadline;
 
@@ -46,7 +45,7 @@ public class DeadlineCommand extends Command {
      *
      * @param tasks runtime storage of tasks.
      */
-    public CommandResult execute(TaskList tasks) throws UnknownDateFormatException {
+    public CommandResult execute(TaskList tasks) {
         Deadline deadline = new Deadline(description, date, time);
         tasks.add(deadline);
         Storage.updateFile(tasks);

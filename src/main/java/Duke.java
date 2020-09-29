@@ -2,12 +2,14 @@ import commands.ByeCommand;
 import commands.Command;
 import commands.CommandResult;
 import data.TaskList;
-import exceptions.*;
+import exceptions.InvalidCommandException;
+import exceptions.InvalidTaskNumberException;
+import exceptions.TaskDoneException;
+import exceptions.UnknownCommandException;
 import parser.Parser;
 import storage.Storage;
 import ui.Ui;
 
-import java.io.IOException;
 import java.util.Scanner;
 
 import static common.Message.*;
@@ -27,38 +29,31 @@ public class Duke {
      * Reads data from file and runs main program.
      */
     public static void main(String[] args) {
-        try {
-            Storage.loadTasks(tasks);
-            run();
-        } catch (NumberFormatException | InvalidTaskNumberException e) {
-            Ui.printMessageWithHorizontalLines(INVALID_TASK_NUMBER_MESSAGE);
-        } catch (UnknownCommandException e) {
-            Ui.printMessageWithHorizontalLines(UNKNOWN_COMMAND_MESSAGE);
-        } catch (InvalidCommandException e) {
-            Ui.printMessageWithHorizontalLines(INVALID_COMMAND_MESSAGE);
-        } catch (TaskDoneException e) {
-            Ui.printMessageWithHorizontalLines(TASK_ALREADY_DONE_MESSAGE);
-        } catch (UnknownDateFormatException e) {
-            Ui.printMessageWithHorizontalLines(UNKNOWN_DATE_FORMAT_MESSAGE);
-        } catch (IOException e) {
-            Ui.printMessageWithHorizontalLines(FILE_NOT_FOUND_MESSAGE);
-        } catch (Exception e) {
-            Ui.printMessageWithHorizontalLines(UNKNOWN_ERROR_MESSAGE);
-        }
+        Storage.loadTasks(tasks);
+        run();
     }
 
 
-    private static void run() throws NumberFormatException, InvalidTaskNumberException,
-            UnknownCommandException, InvalidCommandException, TaskDoneException, UnknownDateFormatException {
+    private static void run() {
         Scanner scanner = new Scanner(System.in);
         Ui.greet();
         boolean running = true;
         while (running) {
-            Command command = Parser.processInput(scanner.nextLine());
-            CommandResult result = command.execute(tasks);
-            Ui.printCommandResult(result);
-            if (command instanceof ByeCommand) {
-                running = false;
+            try {
+                Command command = Parser.processInput(scanner.nextLine());
+                CommandResult result = command.execute(tasks);
+                Ui.printCommandResult(result);
+                if (command instanceof ByeCommand) {
+                    running = false;
+                }
+            } catch (NumberFormatException | InvalidTaskNumberException e) {
+                Ui.printMessageWithHorizontalLines(INVALID_TASK_NUMBER_MESSAGE);
+            } catch (UnknownCommandException e) {
+                Ui.printMessageWithHorizontalLines(UNKNOWN_COMMAND_MESSAGE);
+            } catch (InvalidCommandException e) {
+                Ui.printMessageWithHorizontalLines(INVALID_COMMAND_MESSAGE);
+            } catch (TaskDoneException e) {
+                Ui.printMessageWithHorizontalLines(TASK_ALREADY_DONE_MESSAGE);
             }
         }
     }

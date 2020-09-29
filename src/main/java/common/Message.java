@@ -1,10 +1,10 @@
 package common;
 
 public class Message {
-    public static final String HORIZONTAL_LINE = "\t______________________________"
-            + "______________________________";
-    public static final String GREET_MESSAGE = "\t Hello! I'm Duke" + System.lineSeparator()
-            + "\t What can I do for you?";
+    public static final String HORIZONTAL_LINE = "\t______________________________" +
+            "______________________________";
+    public static final String GREET_MESSAGE = "\t Hello! I'm Duke" + System.lineSeparator() +
+            "\t What can I do for you?";
     public static final String BYE_MESSAGE = "\t Bye. Hope to see you again soon!";
     public static final String ADD_MESSAGE = "\t Got it. I've added: this task:";
     public static final String LIST_MESSAGE = "\t Here are the tasks in your list:";
@@ -15,7 +15,4 @@ public class Message {
     public static final String TASK_ALREADY_DONE_MESSAGE = "\t Task already done!";
     public static final String INVALID_COMMAND_MESSAGE = "\t Check command format!";
     public static final String UNKNOWN_COMMAND_MESSAGE = "\t Check command word!";
-    public static final String UNKNOWN_DATE_FORMAT_MESSAGE = "\t Unknown date format!";
-    public static final String FILE_NOT_FOUND_MESSAGE = "\t File not found!";
-    public static final String UNKNOWN_ERROR_MESSAGE = "\t Unknown error!";
 }
