@@ -25,7 +25,7 @@ public class EventCommand extends Command {
     private final String end;
 
     /**
-     * Creates a AddEvent Command with trimmed input.
+     * Creates a EventCommand with trimmed input.
      *
      * @param trimmedInput raw input without leading and trailing white space.
      * @throws InvalidCommandException if the trimmed input format does not match with the pattern.
@@ -46,6 +46,7 @@ public class EventCommand extends Command {
      * Executes the command by creating a Event task and add it to TaskList.
      *
      * @param tasks runtime storage of tasks.
+     * @return CommandResult that pass printing info to Ui class.
      */
     public CommandResult execute(TaskList tasks) {
         Event event = new Event(description, date, start, end);

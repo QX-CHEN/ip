@@ -20,9 +20,10 @@ public class TodoCommand extends Command {
     private final String description;
 
     /**
-     * Creates a AddTodo Command with trimmed input.
+     * Creates a TodoCommand with trimmed input.
      *
      * @param trimmedInput raw input without leading and trailing white space.
+     * @throws InvalidCommandException input format does not match with the command word.
      */
     public TodoCommand(String trimmedInput) throws InvalidCommandException {
         Matcher matcher = COMMAND_PATTERN.matcher(trimmedInput);
@@ -37,6 +38,7 @@ public class TodoCommand extends Command {
      * Executes the command by creating a Todo task and add it to TaskList.
      *
      * @param tasks runtime storage of tasks.
+     * @return CommandResult that pass printing info to Ui class.
      */
     public CommandResult execute(TaskList tasks) {
         Todo todo = new Todo(description);

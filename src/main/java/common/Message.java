@@ -1,5 +1,8 @@
 package common;
 
+/**
+ * Message class contains messages to be printed by Ui class.
+ */
 public class Message {
     public static final String HORIZONTAL_LINE = "\t______________________________" +
             "______________________________";

@@ -32,6 +32,11 @@ public class Storage {
         }
     }
 
+    /**
+     * Write to file the latest data of tasks.
+     *
+     * @param tasks latest TaskList object after modification.
+     */
     private static void writeTasksToFile(TaskList tasks) throws IOException {
         FileWriter file = new FileWriter(DIRECTORY_NAME + "/" + FILE_NAME);
         for (int i = 0; tasks.size() > i; i++) {
@@ -45,6 +50,8 @@ public class Storage {
      * Load data from file and add tasks to TaskList.
      *
      * @param tasks empty TaskList.
+     * @throws FileNotFoundException file not found.
+     * @throws UnknownDateFormatException data format not recognised.
      */
     public static void loadTasks(TaskList tasks) {
         if (!createDirectory()) {
@@ -56,6 +63,11 @@ public class Storage {
         }
     }
 
+    /**
+     * Create a directory if the "data" directory does not exists.
+     *
+     * @return true if directory is at the point of execution.
+     */
     private static boolean createDirectory() {
         File directory = new File(DIRECTORY_NAME);
         boolean directoryCreated = false;
@@ -69,6 +81,12 @@ public class Storage {
         return directoryCreated;
     }
 
+    /**
+     * Read lines from file and process each line.
+     *
+     * @param tasks empty TaskList.
+     * @throws FileNotFoundException file not found.
+     */
     private static void readTasksFromFile(TaskList tasks) throws FileNotFoundException {
         File file = new File(DIRECTORY_NAME + "/" + FILE_NAME);
         Scanner scanner = new Scanner(file);
@@ -77,6 +95,12 @@ public class Storage {
         }
     }
 
+    /**
+     * Process a line to a task to TaskList.
+     *
+     * @param tasks TaskList to store tasks.
+     * @param line process line to add task.
+     */
     private static void processLine(TaskList tasks, String line) {
         String[] parts = line.split("\\|");
         boolean done = ("1".equals(parts[1]));

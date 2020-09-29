@@ -24,7 +24,7 @@ public class DeadlineCommand extends Command {
     private final String time;
 
     /**
-     * Creates a AddDeadline Command with trimmed input.
+     * Creates a DeadlineCommand with trimmed input.
      *
      * @param trimmedInput raw input without leading and trailing white space.
      * @throws InvalidCommandException if the trimmed input format does not match with the pattern.
@@ -44,6 +44,7 @@ public class DeadlineCommand extends Command {
      * Executes the command by creating a Deadline task and add it to TaskList.
      *
      * @param tasks runtime storage of tasks.
+     * @return CommandResult that pass printing info to Ui class.
      */
     public CommandResult execute(TaskList tasks) {
         Deadline deadline = new Deadline(description, date, time);

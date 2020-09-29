@@ -1,7 +1,6 @@
 package commands;
 
 import data.TaskList;
-import ui.Ui;
 
 import static common.Message.BYE_MESSAGE;
 
@@ -15,6 +14,7 @@ public class ByeCommand extends Command{
      * Executes the command by printing a bye message.
      *
      * @param tasks runtime storage of tasks.
+     * @return CommandResult that pass printing info to Ui class.
      */
     public CommandResult execute(TaskList tasks) {
         return new CommandResult(BYE_MESSAGE);

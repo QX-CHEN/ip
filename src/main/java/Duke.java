@@ -33,7 +33,9 @@ public class Duke {
         run();
     }
 
-
+    /**
+     * Run the main program and stop when a bye command is given.
+     */
     private static void run() {
         Scanner scanner = new Scanner(System.in);
         Ui.greet();

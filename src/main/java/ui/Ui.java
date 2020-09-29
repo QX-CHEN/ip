@@ -38,6 +38,9 @@ public class Ui {
         printHorizontalLine();
     }
 
+    /**
+     * Prints command result after each command execution.
+     */
     public static void printCommandResult(CommandResult commandResult) {
         printHorizontalLine();
         System.out.println(commandResult.getMessage());

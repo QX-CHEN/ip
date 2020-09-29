@@ -41,6 +41,8 @@ public class TaskList {
 
     /**
      * Remove task from TaskList using index.
+     *
+     * @return task that is removed from the TaskList.
      */
     public Task deleteTask(int taskNum) throws InvalidTaskNumberException {
         if (taskNum <= 0 || taskNum > tasks.size()) {
@@ -51,6 +53,8 @@ public class TaskList {
 
     /**
      * Mark task as done using index.
+     *
+     * @return task that is marked as done.
      */
     public Task markAsDone(int taskNum) throws InvalidTaskNumberException, TaskDoneException {
         if (taskNum <= 0 || taskNum > tasks.size()) {

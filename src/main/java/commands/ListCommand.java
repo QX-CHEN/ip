@@ -14,6 +14,7 @@ public class ListCommand extends Command{
      * Executes the command by listing all the tasks.
      *
      * @param tasks runtime storage of tasks.
+     * @return CommandResult that pass printing info to Ui class.
      */
     public CommandResult execute(TaskList tasks) {
         return new CommandResult(LIST_MESSAGE, tasks);

@@ -17,10 +17,10 @@ public class Event extends Task {
     /**
      * Creates a Event task with description and time.
      *
-     * @param description description of a event.
-     * @param dateString date of a event.
-     * @param startString start time of a event.
-     * @param endString end time of a event.
+     * @param description description of an event.
+     * @param dateString date of an event.
+     * @param startString start time of an event.
+     * @param endString end time of an event.
      */
     public Event(String description, String dateString, String startString, String endString) {
         super(description);
@@ -32,11 +32,11 @@ public class Event extends Task {
     /**
      * Creates a Event task with status, description and time.
      *
-     * @param done status of a task.
-     * @param description description of a task.
-     * @param dateString date of a event.
-     * @param startString start time of a event.
-     * @param endString end time of a event.
+     * @param done status of an event.
+     * @param description description of an event.
+     * @param dateString date of an event.
+     * @param startString start time of an event.
+     * @param endString end time of an event.
      */
     public Event(boolean done, String description, String dateString, String startString, String endString) {
         super(done, description);

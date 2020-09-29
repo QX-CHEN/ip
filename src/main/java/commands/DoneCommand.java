@@ -10,7 +10,7 @@ import tasks.Task;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import static common.Message.*;
+import static common.Message.MARK_AS_DONE_MESSAGE;
 
 /**
  * Representation of command that marks a task in TaskList as done.
@@ -24,6 +24,7 @@ public class DoneCommand extends Command{
      * Creates a DoneCommand with trimmed input.
      *
      * @param trimmedInput raw input without leading and trailing white space.
+     * @throws InvalidCommandException input format does not match with the command word.
      */
     public DoneCommand(String trimmedInput) throws InvalidCommandException {
         Matcher matcher = COMMAND_PATTERN.matcher(trimmedInput);
@@ -38,6 +39,8 @@ public class DoneCommand extends Command{
      * Executes the command by marking task of given index as done.
      *
      * @param tasks runtime storage of tasks.
+     * @return CommandResult that pass printing info to Ui class.
+     * @throws InvalidTaskNumberException task number out of range.
      */
     public CommandResult execute(TaskList tasks) throws InvalidTaskNumberException, TaskDoneException {
         Task task = tasks.markAsDone(taskNum);
