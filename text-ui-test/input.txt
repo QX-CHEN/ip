@@ -40,5 +40,8 @@ delete 0
 delete -1
 delete 4
 list
-delete 2
+delete 4
+list
+find vook
+find book
 bye

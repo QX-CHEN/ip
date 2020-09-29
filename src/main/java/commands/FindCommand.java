@@ -45,6 +45,6 @@ public class FindCommand extends Command {
                 filteredTasks.add(tasks.get(i));
             }
         }
-        return new CommandResult(FIND_MESSAGE, tasks);
+        return new CommandResult(FIND_MESSAGE, filteredTasks);
     }
 }
