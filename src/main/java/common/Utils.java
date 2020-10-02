@@ -11,7 +11,6 @@ import java.time.format.DateTimeFormatter;
  */
 public class Utils {
 
-
     /**
      * Convert a date from String to LocalDate.
      *
@@ -31,7 +30,7 @@ public class Utils {
             return null;
         }
     }
-
+    
     /**
      * Convert a time from String to LocalDate.
      *

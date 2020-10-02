@@ -18,7 +18,7 @@ import static common.Message.*;
  * Duke class starts, runs and stops the main program.
  *
  * @author Chen Qixing
- * @version 0.1
+ * @version 0.2
  * @since 16 AUG 2020
  */
 public class Duke {
