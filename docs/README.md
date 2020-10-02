@@ -158,13 +158,13 @@ Expected outcome:
 
 ### Searching relevant task(s) : `find`
 
-Find and display task(s) with given keyword.
+Find and display task(s) with given keyword, this feature is case-insensitive.
 
 Format: `find KEYWORD`
 
 Example of usage: 
 
-`find report`
+`find Report`
 
 Expected outcome:
 
@@ -201,8 +201,8 @@ Data will be automatically saved after modification commands like
 Action | Format | Example
 ------ | ------ | -------
 todo | `todo DESCRIPTION` | `todo user guide`
-event | `event DESCRIPTION /at DATE START-END` | `event meeting 20/02/2020 1700-1900`
-deadline | `deadline DESCRIPTION /by DATE TIME` | `deadline report 24/10/2020 2359`
+event | `event DESCRIPTION /at DATE START-END` | `event meeting /at 20/02/2020 1700-1900`
+deadline | `deadline DESCRIPTION /by DATE TIME` | `deadline report /by 24/10/2020 2359`
 done | `done INDEX` | `done 1`
 delete | `delete INDEX` | `delete 2`
 find | `find KEYWORD` | `find meet`

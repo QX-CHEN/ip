@@ -41,7 +41,7 @@ public class FindCommand extends Command {
     public CommandResult execute(TaskList tasks) {
         TaskList filteredTasks = new TaskList();
         for (int i = 0; i < tasks.size(); i++) {
-            if (tasks.get(i).getDescription().contains(keyword)) {
+            if (tasks.get(i).getDescription().toLowerCase().contains(keyword.toLowerCase())) {
                 filteredTasks.add(tasks.get(i));
             }
         }
