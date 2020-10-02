@@ -21,7 +21,7 @@ view the tasks.
 
 1. Download and install Java 11 in your Computer.
 
-2. Download the latest "Duke.jar" from [here](https://github.com/QX-CHEN/ip/releases/download/A-Jar/Duke.jar).
+2. Download the latest "Duke.jar" from [here](https://github.com/QX-CHEN/ip/releases/download/A-Release/Duke.jar).
 
 3. To use existing data file (optional):
     - Create a "data" folder in the same folder as "Duke.jar".
